@@ -5,8 +5,8 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
+@Builder
 @ToString
 @Entity
 public class Usuario {
