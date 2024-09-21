@@ -4,6 +4,6 @@ import org.spdgroup.bigbitebackend.model.dtos.UsuarioDTO;
 
 public interface IUsuarioService {
 
-    public void registrar(UsuarioDTO usuario) throws Exception;
-    /*public void iniciarSesion(UsuarioDTO usuario);*/
+    public void registrarUsuario(UsuarioDTO usuarioDTO) throws Exception;
+    public void autenticarUsuario(UsuarioDTO usuarioDTO) throws Exception;
 }
