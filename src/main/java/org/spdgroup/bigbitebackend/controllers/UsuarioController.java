@@ -16,11 +16,23 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
 
+    // TODO: LUEGO AGREGAR UNA CLASE ExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
+
     @PostMapping("/registrar")
     public ResponseEntity<String> registrar(@RequestBody UsuarioDTO usuario){
         try {
-            usuarioService.registrar(usuario);
+            usuarioService.registrarUsuario(usuario);
             return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/iniciar-sesion")
+    public ResponseEntity<String> iniciarSesion(@RequestBody UsuarioDTO usuario){
+        try {
+            usuarioService.autenticarUsuario(usuario);
+            return new ResponseEntity<>("Inicio de sesión exitoso", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
