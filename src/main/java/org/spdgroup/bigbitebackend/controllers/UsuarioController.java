@@ -17,6 +17,7 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     // TODO: LUEGO AGREGAR UNA CLASE ExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
+    // TODO: Implementar autenticacion de Colmena TEC y https://www.youtube.com/watch?v=-Z4a0bKr2Pg
 
     @PostMapping("/registrar")
     public ResponseEntity<String> registrar(@RequestBody UsuarioDTO usuario){
