@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 .env
+src/main/resources/big-bite-436521-19ed3ec8ed6c.json
