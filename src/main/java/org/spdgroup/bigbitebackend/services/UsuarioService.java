@@ -26,6 +26,7 @@ public class UsuarioService implements IUsuarioService {
                 .email(usuarioDTO.getEmail())
                 .telefono(usuarioDTO.getTelefono())
                 .password(usuarioDTO.getPassword())
+                .imagen(usuarioDTO.getImagen())
                 .build();
         usuarioRepo.save(usuario);
     }
