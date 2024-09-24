@@ -19,5 +19,5 @@ public class Usuario {
     private String email;
     private String telefono;
     private String password;
-    private String imagen;
+    private String urlFotoPerfil;
 }
