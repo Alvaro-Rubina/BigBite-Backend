@@ -12,3 +12,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  cloud:
+    gcp:
+      storage:
+        credentials:
+          location: classpath:gcp-credentials-bigbite.json
