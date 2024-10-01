@@ -31,7 +31,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/iniciar-sesion")
+    @PostMapping("/iniciar-sesion/")
     public ResponseEntity<String> iniciarSesion(@RequestBody UsuarioDTO usuario){
         try {
             usuarioService.autenticarUsuario(usuario);
