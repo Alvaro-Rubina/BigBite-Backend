@@ -1,9 +1,6 @@
 package org.spdgroup.bigbitebackend.model.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
