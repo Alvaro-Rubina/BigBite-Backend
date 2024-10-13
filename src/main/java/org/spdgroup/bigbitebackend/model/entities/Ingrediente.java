@@ -11,7 +11,6 @@ import org.spdgroup.bigbitebackend.model.enums.UnidadMedida;
 @AllArgsConstructor
 @Getter @Setter
 @Builder
-@ToString
 @Entity
 public class Ingrediente {
 
