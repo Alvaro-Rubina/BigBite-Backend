@@ -10,13 +10,9 @@ import java.util.List;
 @Getter @Setter
 @Builder
 @ToString
-@Entity
-public class Producto {
+public abstract class Producto {
 
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String nombre;
     private String descripcion;
     private double precioCosto;
@@ -24,7 +20,4 @@ public class Producto {
     private int stockActual;
     private int tiempoPreparacion;
     private boolean activo;        // True = se puede vender, False = no se puede vender
-
-    @ManyToMany
-    private List<Ingrediente> ingredientes;
 }
