@@ -10,12 +10,12 @@ import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 @Entity
 public class Bebida extends Producto {
 
+    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

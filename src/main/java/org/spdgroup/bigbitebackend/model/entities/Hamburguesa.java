@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 public class Hamburguesa extends Producto {
 
+    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +20,5 @@ public class Hamburguesa extends Producto {
 
     @ManyToMany
     private List<Ingrediente> ingredientes;
-
 
 }

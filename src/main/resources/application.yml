@@ -6,6 +6,7 @@ spring:
     url: jdbc:mysql://localhost:3306/bigbite?useSSL=false&serverTimezone=UTC
     username: root
     password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect

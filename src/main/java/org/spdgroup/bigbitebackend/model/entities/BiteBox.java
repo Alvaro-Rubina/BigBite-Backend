@@ -11,6 +11,7 @@ import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 @Entity
 public class BiteBox extends Producto {
 
+    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
