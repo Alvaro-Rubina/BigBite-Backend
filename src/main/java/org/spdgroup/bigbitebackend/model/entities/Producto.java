@@ -19,5 +19,5 @@ public abstract class Producto {
     private double precioVenta;
     private int stockActual;
     private int tiempoPreparacion;
-    private boolean activo;        // True = se puede vender, False = no se puede vender
+    private boolean disponible;        // True = se puede vender, False = no se puede vender
 }
