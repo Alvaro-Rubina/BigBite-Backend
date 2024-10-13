@@ -2,6 +2,7 @@ package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 import java.util.List;
 
@@ -10,15 +11,14 @@ import java.util.List;
 @Getter @Setter
 @Builder
 @Entity
-public class Hamburguesa extends Producto {
+public class PapasFritas extends Producto{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // TODO: AGREGAR MAS ATRIBUTOS PARA HAMBURGUESAAA
+    private Tamanio tamanio;
+    // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
 
     @ManyToMany
     private List<Ingrediente> ingredientes;
-
-
 }
