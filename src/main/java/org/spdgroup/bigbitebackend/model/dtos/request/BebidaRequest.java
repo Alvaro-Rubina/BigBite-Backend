@@ -7,6 +7,5 @@ public record BebidaRequest(String nombre,
                             double precioCosto,
                             double precioVenta,
                             int stockActual,
-                            int tiempoPreparacion,
                             Tamanio tamanio) {
 }
