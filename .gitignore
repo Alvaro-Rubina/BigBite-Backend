@@ -33,3 +33,4 @@ build/
 ### VS Code ###
 .vscode/
 .env
+src/main/resources/gcp-credentials-bigbite.json

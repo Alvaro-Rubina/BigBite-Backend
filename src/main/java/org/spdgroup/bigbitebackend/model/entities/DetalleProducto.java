@@ -7,17 +7,16 @@ import lombok.*;
 @AllArgsConstructor
 @Getter @Setter
 @Builder
-@ToString
 @Entity
-public class Usuario {
+public class DetalleProducto {
 
+    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String apellido;
-    private String email;
-    private String telefono;
-    private String password;
-    private String urlFotoPerfil;
+    private int cantidad;
+
+    // TODO: VER COMO LOGRAR ESTO TENIENDO EN CUENTA LA HERENCIA etc ma{ñana veo
+    @ManyToOne
+    private Producto producto;
 }
