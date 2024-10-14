@@ -1,4 +1,4 @@
-package org.spdgroup.bigbitebackend.model.dtos.request;
+package org.spdgroup.bigbitebackend.model.dtos;
 
 import lombok.*;
 

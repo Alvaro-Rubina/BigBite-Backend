@@ -1,6 +1,6 @@
 package org.spdgroup.bigbitebackend.services;
 
-import org.spdgroup.bigbitebackend.model.dtos.request.HamburguesaDTO;
+import org.spdgroup.bigbitebackend.model.dtos.HamburguesaDTO;
 import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 import org.spdgroup.bigbitebackend.repositories.IHamburguesaRepository;
 import org.spdgroup.bigbitebackend.utils.mapper.HamburguesaMapper;
