@@ -3,7 +3,6 @@ package org.spdgroup.bigbitebackend.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.spdgroup.bigbitebackend.model.enums.Marca;
 import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 @NoArgsConstructor
@@ -15,7 +14,7 @@ import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 public class Bebida extends Producto {
 
     //
+    @Enumerated(EnumType.STRING)
     private Tamanio tamanio;
-    private Marca marca;
     // TODO: AGREGAR MAS ATRIBUTOS PARA BEBIDAS
 }
