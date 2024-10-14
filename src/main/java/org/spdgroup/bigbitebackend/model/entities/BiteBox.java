@@ -2,19 +2,18 @@ package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Builder
+@SuperBuilder
 @Entity
+@DiscriminatorValue("BITE_BOX")
 public class BiteBox extends Producto {
 
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private boolean contieneJuguete;
 
     @ManyToOne
