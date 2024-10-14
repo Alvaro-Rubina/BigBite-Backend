@@ -14,8 +14,6 @@ import java.util.List;
 @DiscriminatorValue("HAMBURGUESA")
 public class Hamburguesa extends Producto {
 
-    //
-    private List<String> ingredientes;
     // TODO: AGREGAR MAS ATRIBUTOS PARA HAMBURGUESAAA
 
 }
