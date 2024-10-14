@@ -17,7 +17,4 @@ public class Hamburguesa extends Producto {
     //
     // TODO: AGREGAR MAS ATRIBUTOS PARA HAMBURGUESAAA
 
-    @ManyToMany
-    private List<Ingrediente> ingredientes;
-
 }

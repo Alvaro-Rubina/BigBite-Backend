@@ -19,6 +19,4 @@ public class PapasFritas extends Producto{
     private Tamanio tamanio;
     // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
 
-    @ManyToMany
-    private List<Ingrediente> ingredientes;
 }
