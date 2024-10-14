@@ -15,6 +15,7 @@ import java.util.List;
 public class Hamburguesa extends Producto {
 
     //
+    private List<String> ingredientes;
     // TODO: AGREGAR MAS ATRIBUTOS PARA HAMBURGUESAAA
 
 }

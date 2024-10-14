@@ -17,6 +17,7 @@ public class PapasFritas extends Producto{
 
     //
     private Tamanio tamanio;
+    private List<String> ingredientes;
     // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
 
 }
