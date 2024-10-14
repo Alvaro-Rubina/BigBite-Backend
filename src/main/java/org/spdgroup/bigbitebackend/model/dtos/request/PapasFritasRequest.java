@@ -11,5 +11,6 @@ public record PapasFritasRequest(String nombre,
                                  int stockActual,
                                  int tiempoPreparacion,
                                  Tamanio tamanio,
-                                 List<String> ingredientes) {
+                                 List<String> ingredientes,
+                                 String urlImagen) {
 }

@@ -25,4 +25,5 @@ public class Producto {
     private int stockActual;
     private int tiempoPreparacion;
     private boolean disponible;        // True = se puede vender, False = no se puede vender
+    private String urlImagen;
 }

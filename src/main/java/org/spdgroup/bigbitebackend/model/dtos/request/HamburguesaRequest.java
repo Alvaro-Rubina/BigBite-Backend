@@ -8,5 +8,6 @@ public record HamburguesaRequest (String nombre,
                                  double precioVenta,
                                  int stockActual,
                                  int tiempoPreparacion,
-                                 List<String> ingredientes){
+                                 List<String> ingredientes,
+                                  String urlImagen){
 }

@@ -10,6 +10,7 @@ public record BiteBoxRequest(String nombre,
                              int stockActual,
                              boolean contieneJuguete,
                              Hamburguesa hamburguesa,
-                             Bebida bebida
+                             Bebida bebida,
+                             String urlImagen
                              ) {
 }

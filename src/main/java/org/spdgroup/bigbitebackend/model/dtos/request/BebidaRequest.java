@@ -7,5 +7,6 @@ public record BebidaRequest(String nombre,
                             double precioCosto,
                             double precioVenta,
                             int stockActual,
-                            Tamanio tamanio) {
+                            Tamanio tamanio,
+                            String urlImagen) {
 }
