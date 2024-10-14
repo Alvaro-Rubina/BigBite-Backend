@@ -2,6 +2,7 @@ package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 import java.util.List;
@@ -9,17 +10,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Builder
+@SuperBuilder
 @Entity
+@DiscriminatorValue("PAPAS_FRITAS")
 public class PapasFritas extends Producto{
 
     //
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private Tamanio tamanio;
+    private List<String> ingredientes;
     // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
 
-    @ManyToMany
-    private List<Ingrediente> ingredientes;
 }

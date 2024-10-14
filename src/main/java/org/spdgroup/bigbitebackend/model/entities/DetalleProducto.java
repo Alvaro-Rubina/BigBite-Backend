@@ -17,6 +17,6 @@ public class DetalleProducto {
     private int cantidad;
 
     // TODO: VER COMO LOGRAR ESTO TENIENDO EN CUENTA LA HERENCIA etc ma{ñana veo
-    /*@ManyToOne
-    private Producto producto;*/
+    @ManyToOne
+    private Producto producto;
 }
