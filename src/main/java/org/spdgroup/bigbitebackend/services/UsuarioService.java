@@ -3,6 +3,7 @@ package org.spdgroup.bigbitebackend.services;
 import org.spdgroup.bigbitebackend.model.dtos.UsuarioDTO;
 import org.spdgroup.bigbitebackend.model.entities.Usuario;
 import org.spdgroup.bigbitebackend.repositories.UsuarioRepository;
+import org.spdgroup.bigbitebackend.utils.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepo;
+
+    @Autowired
+    private UsuarioMapper usuarioMapper;
 
     @Autowired
     private GoogleCloudStorageService storageService;
@@ -26,14 +30,8 @@ public class UsuarioService {
         // Subir la imagen de perfil a Google Cloud Storage
         String imagenPerfilUrl = storageService.uploadFile(imagenPerfil);
 
-        Usuario usuario = Usuario.builder()
-                .nombre(usuarioDTO.getNombre())
-                .apellido(usuarioDTO.getApellido())
-                .email(usuarioDTO.getEmail())
-                .telefono(usuarioDTO.getTelefono())
-                .password(usuarioDTO.getPassword())
-                .urlFotoPerfil(imagenPerfilUrl) // Guardar la URL de la imagen en el usuario
-                .build();
+        usuarioDTO.setUrlFotoPerfil(imagenPerfilUrl);
+        Usuario usuario = usuarioMapper.usuarioDTOToUsuario(usuarioDTO);
 
         usuarioRepo.save(usuario);
     }
