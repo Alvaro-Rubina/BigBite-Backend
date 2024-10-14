@@ -22,8 +22,8 @@ public class Producto {
     private String descripcion;
     private double precioCosto;
     private double precioVenta;
-    private int stockActual;
-    private int tiempoPreparacion;
+    private int stockActual = 0;       // Al cargar un nuevo producto su stock será 0 si no se especifica
+    private int tiempoPreparacion = 0; // El tiempo de preparacion será 0 si no se especifica
     private boolean disponible;        // True = se puede vender, False = no se puede vender
     private String urlImagen;
 }
