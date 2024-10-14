@@ -26,4 +26,13 @@ public class Producto {
     private int tiempoPreparacion = 0; // El tiempo de preparacion será 0 si no se especifica
     private boolean disponible;        // True = se puede vender, False = no se puede vender
     private String urlImagen;
+
+    //
+    public void setDisponible() {
+        if (this.stockActual > 0) {
+            this.disponible = true;
+        } else {
+            this.disponible = false;
+        }
+    }
 }
