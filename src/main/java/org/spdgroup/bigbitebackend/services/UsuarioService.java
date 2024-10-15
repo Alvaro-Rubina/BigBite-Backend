@@ -20,7 +20,7 @@ public class UsuarioService {
     @Autowired
     private GoogleCloudStorageService storageService;
 
-    // TODO: LUEGO AGREGAR UNA CLASE ExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
+    // TODO: LUEGO AGREGAR UNA CLASE GlobalExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
     public void registrarUsuario(UsuarioDTO usuarioDTO, MultipartFile imagenPerfil) throws Exception {
 
         if (usuarioRepo.findByEmail(usuarioDTO.getEmail()) != null) {

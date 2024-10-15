@@ -17,7 +17,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // TODO: LUEGO AGREGAR UNA CLASE ExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
+    // TODO: LUEGO AGREGAR UNA CLASE GlobalExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
     // TODO: Implementar autenticacion con google (Colmena TEC) y manual (https://www.youtube.com/watch?v=-Z4a0bKr2Pg)
 
     @PostMapping("/registrar")
