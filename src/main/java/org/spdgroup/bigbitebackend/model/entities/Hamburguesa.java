@@ -6,10 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
 @SuperBuilder
+@Getter @Setter
 @Entity
 @DiscriminatorValue("HAMBURGUESA")
 public class Hamburguesa extends Producto {
