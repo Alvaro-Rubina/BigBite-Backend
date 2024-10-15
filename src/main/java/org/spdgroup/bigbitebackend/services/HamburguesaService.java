@@ -29,7 +29,7 @@ public class HamburguesaService {
         // Se guarda la imagen de la hamburguesa
         String imagenUrl = storageService.uploadFile(imagen);
 
-        hamburguesaDTO.setUrlImage(imagenUrl);
+        hamburguesaDTO.setUrlImagen(imagenUrl);
         Hamburguesa hamburguesa = hamburguesaMapper.hamburguesaDTOToHamburguesa(hamburguesaDTO);
 
         hamburguesaRepo.save(hamburguesa);
@@ -47,7 +47,7 @@ public class HamburguesaService {
 
         // Se guarda la imagen de la hamburguesa
         String imagenUrl = storageService.uploadFile(imagen);
-        hamburguesaDTO.setUrlImage(imagenUrl);
+        hamburguesaDTO.setUrlImagen(imagenUrl);
 
         Hamburguesa hamburguesa = hamburguesaMapper.hamburguesaDTOToHamburguesa(hamburguesaDTO);
         hamburguesa.setId(id);
