@@ -39,7 +39,7 @@ public class UsuarioService {
     }
 
     // TODO: Este método cambiará cuando se implemente la seguridad
-    public void autenticarUsuario(UsuarioDTO usuarioDTO) throws Exception {
+    public UsuarioDTO autenticarUsuario(UsuarioDTO usuarioDTO) throws Exception {
 
         Usuario usuario = usuarioRepo.findByEmail(usuarioDTO.getEmail());
         if (usuario == null) {
@@ -49,5 +49,6 @@ public class UsuarioService {
             throw new Exception("La contraseña ingresada es incorrecta");
         }
 
+        return usuarioMapper.usuarioToUsuarioDTO(usuario);
     }
 }

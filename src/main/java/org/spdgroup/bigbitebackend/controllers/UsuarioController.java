@@ -32,10 +32,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/iniciar-sesion")
-    public ResponseEntity<String> iniciarSesion(@RequestBody UsuarioDTO usuario){
+    public ResponseEntity<?> iniciarSesion(@RequestBody UsuarioDTO usuario){
         try {
-            usuarioService.autenticarUsuario(usuario);
-            return new ResponseEntity<>("Inicio de sesión exitoso", HttpStatus.OK);
+            UsuarioDTO usuarioDTO = usuarioService.autenticarUsuario(usuario);
+            return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
