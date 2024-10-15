@@ -8,4 +8,6 @@ import org.spdgroup.bigbitebackend.model.entities.Usuario;
 public interface UsuarioMapper {
 
     Usuario usuarioDTOToUsuario(UsuarioDTO usuarioDTO);
+
+    UsuarioDTO usuarioToUsuarioDTO(Usuario usuario);
 }
