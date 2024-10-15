@@ -21,11 +21,11 @@ public class UsuarioController {
     // TODO: Implementar autenticacion con google (Colmena TEC) y manual (https://www.youtube.com/watch?v=-Z4a0bKr2Pg)
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> registrar(@RequestPart("usuario") UsuarioDTO usuario,
+    public ResponseEntity<?> registrar(@RequestPart("usuario") UsuarioDTO usuario,
                                             @RequestPart("imagenPerfil") MultipartFile imagenPerfil) {
         try {
-            usuarioService.registrarUsuario(usuario, imagenPerfil);
-            return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
+            UsuarioDTO usuarioDTO = usuarioService.registrarUsuario(usuario, imagenPerfil);
+            return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

@@ -21,7 +21,7 @@ public class UsuarioService {
     private GoogleCloudStorageService storageService;
 
     // TODO: LUEGO AGREGAR UNA CLASE GlobalExceptionHandler PARA MANEJAR LAS EXCEPCIONES A NIVEL GLOBAL
-    public void registrarUsuario(UsuarioDTO usuarioDTO, MultipartFile imagenPerfil) throws Exception {
+    public UsuarioDTO registrarUsuario(UsuarioDTO usuarioDTO, MultipartFile imagenPerfil) throws Exception {
 
         if (usuarioRepo.findByEmail(usuarioDTO.getEmail()) != null) {
             throw new Exception("Ya existe un usuario registrado con el email ingresado");
@@ -34,6 +34,8 @@ public class UsuarioService {
         Usuario usuario = usuarioMapper.usuarioDTOToUsuario(usuarioDTO);
 
         usuarioRepo.save(usuario);
+
+        return usuarioDTO;
     }
 
     // TODO: Este método cambiará cuando se implemente la seguridad
