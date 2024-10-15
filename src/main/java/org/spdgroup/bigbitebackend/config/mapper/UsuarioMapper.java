@@ -1,4 +1,4 @@
-package org.spdgroup.bigbitebackend.utils.mapper;
+package org.spdgroup.bigbitebackend.config.mapper;
 
 import org.mapstruct.Mapper;
 import org.spdgroup.bigbitebackend.model.dtos.UsuarioDTO;

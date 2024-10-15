@@ -1,4 +1,4 @@
-package org.spdgroup.bigbitebackend.utils.exception;
+package org.spdgroup.bigbitebackend.config.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
