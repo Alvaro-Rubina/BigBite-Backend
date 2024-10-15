@@ -21,10 +21,10 @@ public class HamburguesaController {
 
     @GetMapping
     public List<Hamburguesa> obtenerHamburguesas() {
-        return hamburguesaService.traerHamburguesas();
+        return hamburguesaService.obtenerHamburguesas();
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/agregar")
     public ResponseEntity<String> registrarHamburguesa (@RequestPart HamburguesaDTO hamburguesaDTO,
                                                         @RequestPart MultipartFile imagenHamburguesa) {
         try {
