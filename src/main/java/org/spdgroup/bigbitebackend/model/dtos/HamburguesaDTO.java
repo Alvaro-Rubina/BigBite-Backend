@@ -11,9 +11,9 @@ public class HamburguesaDTO {
     //
     private String nombre;
     private String descripcion;
-    private double precioCosto;
-    private double precioVenta;
-    private int stockActual;
+    private double precio;
+    private double preciCombo;
+    private int stock;
     private int tiempoPreparacion;
     private String urlImage;
 }
