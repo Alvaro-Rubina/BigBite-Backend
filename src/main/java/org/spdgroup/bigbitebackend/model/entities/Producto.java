@@ -23,16 +23,7 @@ public class Producto {
     private double precioCosto;
     private double precioVenta;
     private int stockActual = 0;       // Al cargar un nuevo producto su stock será 0 si no se especifica
-    private int tiempoPreparacion = 0; // El tiempo de preparacion será 0 si no se especifica
+    private int tiempoPreparacion;
     private boolean disponible;        // True = se puede vender, False = no se puede vender
     private String urlImagen;
-
-    //
-    public void setDisponible() {
-        if (this.stockActual > 0) {
-            this.disponible = true;
-        } else {
-            this.disponible = false;
-        }
-    }
 }
