@@ -37,8 +37,8 @@ public class HamburguesaController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarHamburguesa(@RequestPart HamburguesaDTO hamburguesaDTO,
-                                                    @RequestPart(required = false) MultipartFile imagenHamburguesa,
+    public ResponseEntity<String> editarHamburguesa(@RequestPart("hamburguesaDTO") HamburguesaDTO hamburguesaDTO,
+                                                    @RequestPart(value = "imagenHamburguesa", required = false) MultipartFile imagenHamburguesa,
                                                     @PathVariable Long id) {
         try {
             hamburguesaService.editarHamburguesa(hamburguesaDTO, imagenHamburguesa, id);
