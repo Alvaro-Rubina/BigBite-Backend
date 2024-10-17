@@ -7,6 +7,6 @@ import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 @Mapper(componentModel = "spring", uses = HamburguesaMapper.class)
 public interface HamburguesaMapper {
 
-    Hamburguesa hamburguesaDTOToHamburguesa(HamburguesaDTO hamburguesaDTO);
+    Hamburguesa toEntity(HamburguesaDTO hamburguesaDTO);
 
 }

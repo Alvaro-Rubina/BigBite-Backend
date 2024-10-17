@@ -31,7 +31,7 @@ public class UsuarioService {
         String imagenPerfilUrl = storageService.uploadFile(imagenPerfil);
 
         usuarioDTO.setUrlFotoPerfil(imagenPerfilUrl);
-        Usuario usuario = usuarioMapper.usuarioDTOToUsuario(usuarioDTO);
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
 
         usuarioRepo.save(usuario);
 
@@ -49,6 +49,6 @@ public class UsuarioService {
             throw new Exception("La contraseña ingresada es incorrecta");
         }
 
-        return usuarioMapper.usuarioToUsuarioDTO(usuario);
+        return usuarioMapper.toDTO(usuario);
     }
 }

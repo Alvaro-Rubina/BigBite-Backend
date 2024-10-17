@@ -7,7 +7,7 @@ import org.spdgroup.bigbitebackend.model.entities.Usuario;
 @Mapper(componentModel = "spring", uses = UsuarioMapper.class)
 public interface UsuarioMapper {
 
-    Usuario usuarioDTOToUsuario(UsuarioDTO usuarioDTO);
+    Usuario toEntity(UsuarioDTO usuarioDTO);
 
-    UsuarioDTO usuarioToUsuarioDTO(Usuario usuario);
+    UsuarioDTO toDTO(Usuario usuario);
 }

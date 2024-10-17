@@ -15,6 +15,7 @@ public class PapasFritasDTO {
     private double precioCombo;
     private int stock;
     private int tiempoPreparacion;
-    private Tamanio tamanio;
+    private String tamanio;
+    private boolean disponible;
     private String urlImagen;
 }

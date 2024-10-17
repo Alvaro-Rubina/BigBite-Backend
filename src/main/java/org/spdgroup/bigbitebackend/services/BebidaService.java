@@ -30,7 +30,7 @@ public class BebidaService {
         String imagenUrl = storageService.uploadFile(imagen);
 
         bebidaDTO.setUrlImagen(imagenUrl);
-        Bebida bebida = bebidaMapper.bebidaDTOToBebida(bebidaDTO);
+        Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
 
         bebidaRepo.save(bebida);
     }
@@ -60,7 +60,7 @@ public class BebidaService {
             bebidaDTO.setUrlImagen(bebidaExistente.getUrlImagen());
         }
 
-        Bebida bebida = bebidaMapper.bebidaDTOToBebida(bebidaDTO);
+        Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
         bebida.setId(id);
 
         bebidaRepo.save(bebida);

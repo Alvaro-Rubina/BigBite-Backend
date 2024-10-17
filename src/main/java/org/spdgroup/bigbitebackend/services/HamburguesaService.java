@@ -30,7 +30,7 @@ public class HamburguesaService {
         String imagenUrl = storageService.uploadFile(imagen);
 
         hamburguesaDTO.setUrlImagen(imagenUrl);
-        Hamburguesa hamburguesa = hamburguesaMapper.hamburguesaDTOToHamburguesa(hamburguesaDTO);
+        Hamburguesa hamburguesa = hamburguesaMapper.toEntity(hamburguesaDTO);
 
         hamburguesaRepo.save(hamburguesa);
     }
@@ -61,7 +61,7 @@ public class HamburguesaService {
         }
 
         // Mapear el DTO a la entidad y conservar el ID de la hamburguesa existente
-        Hamburguesa hamburguesa = hamburguesaMapper.hamburguesaDTOToHamburguesa(hamburguesaDTO);
+        Hamburguesa hamburguesa = hamburguesaMapper.toEntity(hamburguesaDTO);
         hamburguesa.setId(id);
 
         // Guardar los cambios

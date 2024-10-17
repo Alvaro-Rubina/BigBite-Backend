@@ -7,5 +7,5 @@ import org.spdgroup.bigbitebackend.model.entities.Bebida;
 @Mapper(componentModel = "spring", uses = BebidaMapper.class)
 public interface BebidaMapper {
 
-    Bebida bebidaDTOToBebida(BebidaDTO bebidaDTO);
+    Bebida toEntity(BebidaDTO bebidaDTO);
 }
