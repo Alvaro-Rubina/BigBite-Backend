@@ -15,6 +15,7 @@ import java.util.List;
 public class PapasFritas extends Producto{
 
     //
+    private String tamanio;
     // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
 
 }
