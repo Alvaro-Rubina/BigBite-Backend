@@ -1,17 +1,20 @@
-/*
 package org.spdgroup.bigbitebackend.model.dtos;
 
-import org.spdgroup.bigbitebackend.model.enums.Tamanio;
+import lombok.*;
 
-import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter @Setter
+public class PapasFritasDTO {
 
-public record PapasFritasDTO(String nombre,
-                             String descripcion,
-                             double precio,
-                             double precioCombo,
-                             int stock,
-                             int tiempoPreparacion,
-                             Tamanio tamanio,
-                             String urlImagen) {
+    //
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private double precioCombo;
+    private int stock;
+    private int tiempoPreparacion;
+    private Tamanio tamanio;
+    private String urlImagen;
 }
-*/
