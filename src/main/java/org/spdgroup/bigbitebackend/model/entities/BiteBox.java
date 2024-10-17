@@ -17,7 +17,4 @@ public class BiteBox extends Producto {
 
     @ManyToOne
     private Hamburguesa hamburguesa;
-
-    @ManyToOne
-    private Bebida bebida;
 }
