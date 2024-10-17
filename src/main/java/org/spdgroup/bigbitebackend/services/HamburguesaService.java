@@ -41,18 +41,31 @@ public class HamburguesaService {
 
     public void editarHamburguesa(HamburguesaDTO hamburguesaDTO, MultipartFile imagen, Long id) throws IOException {
 
+        // Verificar si la hamburguesa existe
         if (!hamburguesaRepo.existsById(id)) {
             throw new ProductNotFoundException("Hamburguesa no encontrada");
         }
 
-        // Se guarda la imagen de la hamburguesa
-        String imagenUrl = storageService.uploadFile(imagen);
-        hamburguesaDTO.setUrlImagen(imagenUrl);
+        // Obtener la hamburguesa existente
+        Hamburguesa hamburguesaExistente = hamburguesaRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada"));
 
+        // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
+        if (imagen != null && !imagen.isEmpty()) {
+            // Subir la nueva imagen y obtener su URL
+            String nuevaImagenUrl = storageService.uploadFile(imagen);
+            hamburguesaDTO.setUrlImagen(nuevaImagenUrl);
+        } else {
+            // Mantener la URL de la imagen existente
+            hamburguesaDTO.setUrlImagen(hamburguesaExistente.getUrlImagen());
+        }
+
+        // Mapear el DTO a la entidad y conservar el ID de la hamburguesa existente
         Hamburguesa hamburguesa = hamburguesaMapper.hamburguesaDTOToHamburguesa(hamburguesaDTO);
         hamburguesa.setId(id);
 
+        // Guardar los cambios
         hamburguesaRepo.save(hamburguesa);
-
     }
+
 }
