@@ -1,7 +1,6 @@
 package org.spdgroup.bigbitebackend.model.dtos;
 
 import lombok.*;
-import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +15,6 @@ public class BiteBoxDTO {
     private int stock;
     private boolean disponible;
     private boolean contieneJuguete;
-    private Hamburguesa hamburguesa;
+    private int hamburguesa;        // Se guarda el ID de la hamburguesa para buscarla en la base de datos
     private String urlImagen;
 }
