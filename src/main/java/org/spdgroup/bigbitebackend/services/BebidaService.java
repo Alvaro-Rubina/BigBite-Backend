@@ -24,7 +24,7 @@ public class BebidaService {
     @Autowired
     private GoogleCloudStorageService storageService;
 
-    private void registrarBebida(BebidaDTO bebidaDTO, MultipartFile imagen) throws IOException {
+    public void registrarBebida(BebidaDTO bebidaDTO, MultipartFile imagen) throws IOException {
 
         // Se guarda la imagen de la bebida
         String imagenUrl = storageService.uploadFile(imagen);
@@ -35,11 +35,11 @@ public class BebidaService {
         bebidaRepo.save(bebida);
     }
 
-    private List<Bebida> obtenerBebidas(){
+    public List<Bebida> obtenerBebidas(){
         return bebidaRepo.findAll();
     }
 
-    private void editarBebida(BebidaDTO bebidaDTO, MultipartFile imagen, Long id) throws IOException {
+    public void editarBebida(BebidaDTO bebidaDTO, MultipartFile imagen, Long id) throws IOException {
 
         // Verificar si la bebida existe
         if (!bebidaRepo.existsById(id)) {
