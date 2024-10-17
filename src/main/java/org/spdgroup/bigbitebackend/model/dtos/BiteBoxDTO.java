@@ -1,18 +1,21 @@
-/*
 package org.spdgroup.bigbitebackend.model.dtos;
 
-import org.spdgroup.bigbitebackend.model.entities.Bebida;
+import lombok.*;
 import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 
-public record BiteBoxDTO(String nombre,
-                         String descripcion,
-                         double precio,
-                         double precioCombo,
-                         int stock,
-                         boolean contieneJuguete,
-                         Hamburguesa hamburguesa,
-                         Bebida bebida,
-                         String urlImagen
-                             ) {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter @Setter
+public class BiteBoxDTO {
+
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private double precioCombo;
+    private int stock;
+    private boolean disponible;
+    private boolean contieneJuguete;
+    private Hamburguesa hamburguesa;
+    private String urlImagen;
 }
-*/
