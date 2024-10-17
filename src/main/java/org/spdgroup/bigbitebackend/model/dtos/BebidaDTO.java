@@ -1,9 +1,6 @@
 package org.spdgroup.bigbitebackend.model.dtos;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
-import org.spdgroup.bigbitebackend.model.enums.Tamanio;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +15,7 @@ public class BebidaDTO {
     private double precioCombo;
     private int stock;
     private int tiempoPreparacion;
-    @Enumerated(EnumType.STRING)
-    private Tamanio tamanio;
+    private String marca;
     private boolean disponible;
     private String urlImagen;
 }
