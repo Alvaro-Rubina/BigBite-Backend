@@ -21,10 +21,4 @@ public class BiteBox extends Producto {
 
     @ManyToOne
     private Bebida bebida;
-
-    // Metodos para detalles especificos de BiteBox
-    private void setTamanioDeBebida(){
-        this.bebida.setTamanio(Tamanio.MEDIANO);
-    }
-
 }
