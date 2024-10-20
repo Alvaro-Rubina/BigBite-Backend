@@ -2,7 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.BebidaDTO;
 import org.spdgroup.bigbitebackend.model.entities.Bebida;
-import org.spdgroup.bigbitebackend.repositories.IBebidaRepository;
+import org.spdgroup.bigbitebackend.repositories.BebidaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.BebidaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class BebidaService {
 
     @Autowired
-    IBebidaRepository bebidaRepo;
+    BebidaRepository bebidaRepo;
 
     @Autowired
     BebidaMapper bebidaMapper;

@@ -2,7 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.HamburguesaDTO;
 import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
-import org.spdgroup.bigbitebackend.repositories.IHamburguesaRepository;
+import org.spdgroup.bigbitebackend.repositories.HamburguesaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.HamburguesaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class HamburguesaService {
 
     @Autowired
-    IHamburguesaRepository hamburguesaRepo;
+    HamburguesaRepository hamburguesaRepo;
 
     @Autowired
     HamburguesaMapper hamburguesaMapper;

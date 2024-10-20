@@ -2,9 +2,8 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.BiteBoxDTO;
 import org.spdgroup.bigbitebackend.model.entities.BiteBox;
-import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
-import org.spdgroup.bigbitebackend.repositories.IBiteBoxRepository;
-import org.spdgroup.bigbitebackend.repositories.IHamburguesaRepository;
+import org.spdgroup.bigbitebackend.repositories.BiteBoxRepository;
+import org.spdgroup.bigbitebackend.repositories.HamburguesaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.BiteBoxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +17,10 @@ import java.util.List;
 public class BiteBoxService {
 
     @Autowired
-    IBiteBoxRepository biteBoxRepo;
+    BiteBoxRepository biteBoxRepo;
 
     @Autowired
-    IHamburguesaRepository hamburguesaRepo;
+    HamburguesaRepository hamburguesaRepo;
 
     @Autowired
     BiteBoxMapper biteBoxMapper;

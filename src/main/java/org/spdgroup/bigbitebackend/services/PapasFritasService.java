@@ -2,7 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.PapasFritasDTO;
 import org.spdgroup.bigbitebackend.model.entities.PapasFritas;
-import org.spdgroup.bigbitebackend.repositories.IPapasFritasRepository;
+import org.spdgroup.bigbitebackend.repositories.PapasFritasRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.PapasFritasMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public class PapasFritasService {
 
     @Autowired
-    private IPapasFritasRepository papasFritasRepo;
+    private PapasFritasRepository papasFritasRepo;
 
     @Autowired
     private PapasFritasMapper papasFritasMapper;

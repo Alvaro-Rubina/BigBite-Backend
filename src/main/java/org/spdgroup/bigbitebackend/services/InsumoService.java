@@ -2,7 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.InsumoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Insumo;
-import org.spdgroup.bigbitebackend.repositories.IInsumoRepository;
+import org.spdgroup.bigbitebackend.repositories.InsumoRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.InsumoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 public class InsumoService {
 
     @Autowired
-    private IInsumoRepository insumoRepo;
+    private InsumoRepository insumoRepo;
 
     @Autowired
     private InsumoMapper insumoMapper;
