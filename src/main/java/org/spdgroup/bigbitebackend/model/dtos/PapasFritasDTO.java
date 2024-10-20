@@ -2,6 +2,8 @@ package org.spdgroup.bigbitebackend.model.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,5 +19,6 @@ public class PapasFritasDTO {
     private int tiempoPreparacion;
     private String tamanio;
     private boolean disponible;
+    private List<Long> insumos;
     private String urlImagen;
 }
