@@ -16,6 +16,9 @@ public class PapasFritas extends Producto{
 
     //
     private String tamanio;
-    // TODO: AGREGAR MAS ATRIBUTOS PARA PAPAS FRITAS
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "producto_id")  // Esta columna será generada en DetalleInsumo
+    private List<DetalleInsumo> insumos;
 
 }
