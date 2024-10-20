@@ -41,11 +41,6 @@ public class HamburguesaService {
 
     public void editarHamburguesa(HamburguesaDTO hamburguesaDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Verificar si la hamburguesa existe
-        if (!hamburguesaRepo.existsById(id)) {
-            throw new ProductNotFoundException("Hamburguesa no encontrada");
-        }
-
         // Obtener la hamburguesa existente
         Hamburguesa hamburguesaExistente = hamburguesaRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada"));

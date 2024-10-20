@@ -50,11 +50,6 @@ public class BiteBoxService {
 
     public void editarBiteBox(BiteBoxDTO biteBoxDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Verificar si el BiteBox existe
-        if (!biteBoxRepo.existsById(id)) {
-            throw new ProductNotFoundException("BiteBox no encontrado");
-        }
-
         // Obtener el BiteBox existente
         BiteBox biteBoxExistente = biteBoxRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("BiteBox no encontrado"));

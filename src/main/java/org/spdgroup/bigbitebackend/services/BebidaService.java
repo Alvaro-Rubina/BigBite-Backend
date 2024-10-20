@@ -41,11 +41,6 @@ public class BebidaService {
 
     public void editarBebida(BebidaDTO bebidaDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Verificar si la bebida existe
-        if (!bebidaRepo.existsById(id)) {
-            throw new ProductNotFoundException("Bebida no encontrada");
-        }
-
         // Obtener la bebida existente
         Bebida bebidaExistente = bebidaRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada"));

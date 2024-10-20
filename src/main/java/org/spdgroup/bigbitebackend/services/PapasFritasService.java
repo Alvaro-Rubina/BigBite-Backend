@@ -41,11 +41,6 @@ public class PapasFritasService {
 
     public void editarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Verificar si la bebida existe
-        if (!papasFritasRepo.existsById(id)) {
-            throw new ProductNotFoundException("PapasFritas no encontrada");
-        }
-
         // Obtener la bebida existente
         PapasFritas papasFritasExistente = papasFritasRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("PapasFritas no encontrada"));
