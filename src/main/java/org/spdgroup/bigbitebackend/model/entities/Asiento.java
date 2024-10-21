@@ -17,6 +17,7 @@ public class Asiento {
     private Long id;
     private Date fecha;
     private double monto;
+    private String tipo;
 
     @ManyToOne
     private Cuenta cuenta;

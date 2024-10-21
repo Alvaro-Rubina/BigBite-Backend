@@ -18,11 +18,9 @@ public class Cuenta {
 
     private String codigo;
     private String nombre;
-    private String naturaleza;
 
-    public Cuenta(String codigo, String nombre, String naturaleza) {
+    public Cuenta(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.naturaleza = naturaleza;
     }
 }

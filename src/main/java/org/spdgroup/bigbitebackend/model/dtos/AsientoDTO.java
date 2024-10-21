@@ -13,4 +13,5 @@ public class AsientoDTO {
     private Date fecha;
     private double monto;
     private Long cuenta;
+    private String tipo;
 }
