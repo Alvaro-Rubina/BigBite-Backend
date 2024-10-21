@@ -8,4 +8,6 @@ import org.spdgroup.bigbitebackend.model.entities.Insumo;
 public interface InsumoMapper {
 
     Insumo toEntity (InsumoDTO insumoDTO);
+
+    InsumoDTO toDTO (Insumo insumo);
 }

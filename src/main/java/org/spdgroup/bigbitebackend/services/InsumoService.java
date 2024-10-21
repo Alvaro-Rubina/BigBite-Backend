@@ -24,6 +24,11 @@ public class InsumoService {
         insumoRepo.save(insumo);
     }
 
+    public Insumo obtenerInsumoPorId(Long id) {
+        return insumoRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Insumo no encontrado"));
+    }
+
     public List<Insumo> obtenerInsumos() {
         return insumoRepo.findAll();
     }
