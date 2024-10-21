@@ -13,8 +13,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/cuentas")
 public class CuentaController {
+
     @Autowired
     private CuentaService cuentaService;
+
     @GetMapping
     public List<Cuenta> obtenerCuentas() {
         return cuentaService.obtenerCuentas();
