@@ -22,9 +22,9 @@ public class AsientoController {
         return asientoService.obtenerAsientos();
     }
 
-    @GetMapping("/cuenta/{id}")
-    public List<Asiento> obtenerAsientosPorCuenta(@PathVariable Long id) {
-        return asientoService.obtenerAsientosPorCuenta(id);
+    @GetMapping("/cuenta/{codigo}")
+    public List<Asiento> obtenerAsientosPorCuenta(@PathVariable String codigo) {
+        return asientoService.obtenerAsientosPorCuenta(codigo);
     }
 
     @PostMapping("/agregar")

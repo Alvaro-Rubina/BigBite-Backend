@@ -36,8 +36,8 @@ public class AsientoService {
                 .orElseThrow(() -> new RuntimeException("Asiento no encontrado"));
     }
 
-    public List<Asiento> obtenerAsientosPorCuenta(Long cuentaId) {
-        return asientoRepo.findByCuentaId(cuentaId);
+    public List<Asiento> obtenerAsientosPorCuenta(String codigo) {
+        return asientoRepo.findByCuentaCodigo(codigo);
     }
 
     public List<Asiento> obtenerAsientos() {

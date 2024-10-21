@@ -11,6 +11,6 @@ public interface AsientoRepository extends JpaRepository<Asiento, Long> {
 
     // Traer una lista de asientos buscando de cierta cuenta
 
-    List<Asiento> findByCuentaId(Long cuentaId);
+    List<Asiento> findByCuentaCodigo(String codigo);
 
 }
