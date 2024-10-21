@@ -8,6 +8,6 @@ import org.spdgroup.bigbitebackend.model.entities.DetalleProducto;
 @Mapper(componentModel = "spring", uses = DetalleProductoMapper.class)
 public interface DetalleProductoMapper {
 
-    @Mapping(target = "idProducto", ignore = true)
+    @Mapping(target = "producto", ignore = true)
     DetalleProducto toEntity(DetalleProductoDTO detalleProductoDTO);
 }
