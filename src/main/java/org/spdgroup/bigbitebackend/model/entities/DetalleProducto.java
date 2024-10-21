@@ -16,7 +16,7 @@ public class DetalleProducto {
     private Long id;
     private int cantidad;
 
-    // TODO: VER COMO LOGRAR ESTO TENIENDO EN CUENTA LA HERENCIA etc ma{ñana veo
     @ManyToOne
+    @JoinColumn(name = "producto_id")
     private Producto producto;
 }
