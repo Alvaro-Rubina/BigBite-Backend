@@ -19,10 +19,11 @@ public class DetalleProductoService {
     @Autowired
     private ProductoService productoService;
 
-    public void registrarDetalleProducto(DetalleProductoDTO detalleProductoDTO) {
+    public DetalleProducto registrarDetalleProducto(DetalleProductoDTO detalleProductoDTO) {
         DetalleProducto detalleProducto = detalleProductoMapper.toEntity(detalleProductoDTO);
         detalleProducto.setProducto(productoService.obtenerProductoPorId(detalleProductoDTO.getIdProducto()));
-        detalleProductoRepo.save(detalleProducto);
+        return detalleProductoRepo.save(detalleProducto);
+
     }
 
     public DetalleProducto obtenerDetalleProductoPorId(Long id) {
