@@ -2,8 +2,6 @@ package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.spdgroup.bigbitebackend.model.enums.EstadoPedido;
-import org.spdgroup.bigbitebackend.model.enums.MetodoPago;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,8 +21,8 @@ public class Pedido {
     private LocalDate fechaSolicitado;
     private LocalTime horaSolicitado;
     private double subTotal;
-    private MetodoPago metodoPago;
-    private EstadoPedido estadoPedido;
+    private String metodoPago;
+    private String estadoPedido;
 
     @ManyToMany
     private List<DetalleProducto> productos;
