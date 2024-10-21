@@ -1,6 +1,9 @@
 package org.spdgroup.bigbitebackend.services;
 
+import org.spdgroup.bigbitebackend.model.dtos.DetalleInsumoDTO;
 import org.spdgroup.bigbitebackend.model.dtos.PapasFritasDTO;
+import org.spdgroup.bigbitebackend.model.entities.DetalleInsumo;
+import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 import org.spdgroup.bigbitebackend.model.entities.PapasFritas;
 import org.spdgroup.bigbitebackend.repositories.PapasFritasRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
@@ -22,17 +25,35 @@ public class PapasFritasService {
     private PapasFritasMapper papasFritasMapper;
 
     @Autowired
+    private DetalleInsumoService detalleInsumoService;
+
+    @Autowired
     private GoogleCloudStorageService storageService;
 
     public void registrarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen) throws IOException {
 
+        PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
+
         // Se guarda la imagen de la bebida
         String imagenUrl = storageService.uploadFile(imagen);
 
-        papasFritasDTO.setUrlImagen(imagenUrl);
-        PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
+        // Se guardan los insumos
+        List<DetalleInsumo> detalleInsumos = null;
+        for (DetalleInsumoDTO detalleInsumoDTO : papasFritasDTO.getDetalleInsumos()) {
+            DetalleInsumo detalleInsumo = detalleInsumoService.registrarDetalleInsumo(detalleInsumoDTO);
+            detalleInsumos.add(detalleInsumo);
+        }
+
+        papasFritas.setInsumos(detalleInsumos);
+        papasFritas.setUrlImagen(imagenUrl);
+
 
         papasFritasRepo.save(papasFritas);
+    }
+
+    public PapasFritas obtenerPapasFritasPorId(Long id){
+        return papasFritasRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("PapasFritas no encontrada"));
     }
 
     public List<PapasFritas> obtenerPapasFritas(){
@@ -41,22 +62,34 @@ public class PapasFritasService {
 
     public void editarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Obtener la bebida existente
+        // Obtener las Papas fritas existentes
         PapasFritas papasFritasExistente = papasFritasRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("PapasFritas no encontrada"));
+
+        PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
 
         // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
         if (imagen != null && !imagen.isEmpty()) {
             // Subir la nueva imagen y obtener su URL
             String nuevaImagenUrl = storageService.uploadFile(imagen);
-            papasFritasDTO.setUrlImagen(nuevaImagenUrl);
+            papasFritas.setUrlImagen(nuevaImagenUrl);
         } else {
             // Mantener la URL de la imagen existente
-            papasFritasDTO.setUrlImagen(papasFritasExistente.getUrlImagen());
+            papasFritas.setUrlImagen(papasFritasExistente.getUrlImagen());
         }
 
-        PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
+        //
         papasFritas.setId(id);
+
+        papasFritasRepo.save(papasFritas);
+    }
+
+    public void venderHamburguesa(Long id) {
+        PapasFritas papasFritas = this.obtenerPapasFritasPorId(id);
+
+        for (DetalleInsumo detalleInsumo : papasFritas.getInsumos()) {
+            detalleInsumoService.actualizarStockInsumo(detalleInsumo.getInsumo().getId(), detalleInsumo.getCantidad());
+        }
 
         papasFritasRepo.save(papasFritas);
     }
