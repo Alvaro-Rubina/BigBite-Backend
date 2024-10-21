@@ -1,19 +1,14 @@
 package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@SuperBuilder
+@Getter @Setter
+@Builder
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cuenta {
     @Id
     private String codigo;
