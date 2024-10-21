@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 @Getter @Setter
@@ -13,6 +14,9 @@ import java.util.List;
 @DiscriminatorValue("HAMBURGUESA")
 public class Hamburguesa extends Producto {
 
-    // TODO: AGREGAR MAS ATRIBUTOS PARA HAMBURGUESAAA
+    //
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "producto_id")  // Esta columna será generada en DetalleInsumo
+    private List<DetalleInsumo> insumos;
 
 }

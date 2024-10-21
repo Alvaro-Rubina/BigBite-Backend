@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IBebidaRepository extends JpaRepository<Bebida, Long> {
+public interface BebidaRepository extends JpaRepository<Bebida, Long> {
 }
