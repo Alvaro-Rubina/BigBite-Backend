@@ -22,7 +22,6 @@ public class Producto {
     private String descripcion;
     private double precio;
     private double precioCombo;
-    private int stock;
     private int tiempoPreparacion;
     private boolean disponible;
     private String urlImagen;

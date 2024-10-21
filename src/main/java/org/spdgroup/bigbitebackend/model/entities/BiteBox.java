@@ -13,6 +13,7 @@ import lombok.experimental.SuperBuilder;
 public class BiteBox extends Producto {
 
     //
+    private int stock;
     private boolean contieneJuguete;
 
     @ManyToOne
