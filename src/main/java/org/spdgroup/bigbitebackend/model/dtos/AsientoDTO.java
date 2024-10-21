@@ -10,7 +10,6 @@ import java.util.Date;
 @Builder
 public class AsientoDTO {
 
-    private Long id;
     private Date fecha;
     private double monto;
     private Long cuenta;
