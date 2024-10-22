@@ -10,6 +10,7 @@ import org.spdgroup.bigbitebackend.utils.mapper.PedidoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,12 +29,13 @@ public class PedidoService {
     public void registrarPedido(PedidoDTO pedidoDTO){
         Pedido pedido = pedidoMapper.toEntity(pedidoDTO);
 
-        List<DetalleProducto> detalleProductos = null;
+        List<DetalleProducto> detalleProductos = new ArrayList<>();
         for (DetalleProductoDTO detalleProductoDTO : pedidoDTO.getDetallesProductos()) {
             DetalleProducto detalleProducto = detalleProductoService.registrarDetalleProducto(detalleProductoDTO);
             detalleProductos.add(detalleProducto);
         }
 
+        pedido.setProductos(detalleProductos);
         pedido.setProductos(detalleProductos);
 
         pedidoRepo.save(pedido);

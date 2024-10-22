@@ -11,9 +11,6 @@ import java.util.List;
 public class PedidoDTO {
 
     //
-    private Long id;
-    private String fechaSolicitado;
-    private String horaSolicitado;
     private double subTotal;
     private String metodoPago;
     private String estadoPedido;
