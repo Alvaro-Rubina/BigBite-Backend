@@ -9,5 +9,6 @@ import org.spdgroup.bigbitebackend.model.entities.Asiento;
 public interface AsientoMapper {
 
     @Mapping(target = "cuenta", ignore = true)
+    @Mapping(target="fecha", ignore = true)
     Asiento toEntity(AsientoDTO asientoDTO);
 }

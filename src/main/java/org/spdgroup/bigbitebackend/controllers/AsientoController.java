@@ -1,11 +1,13 @@
 package org.spdgroup.bigbitebackend.controllers;
 
 import org.spdgroup.bigbitebackend.model.dtos.AsientoDTO;
+import org.spdgroup.bigbitebackend.model.dtos.AsientoPorDiaDTO;
 import org.spdgroup.bigbitebackend.model.entities.Asiento;
 import org.spdgroup.bigbitebackend.services.AsientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,5 +32,12 @@ public class AsientoController {
     @PostMapping("/agregar")
     public void registrarAsiento(@RequestBody AsientoDTO asientoDTO) {
         asientoService.registrarAsiento(asientoDTO);
+    }
+
+    @GetMapping("/totalesPorDia")
+    public List<AsientoPorDiaDTO> obtenerTotalesPorDia(
+            @RequestParam LocalDate fechaInicio,
+            @RequestParam LocalDate fechaFin) {
+        return asientoService.obtenerSumaAsientosPorDia(fechaInicio, fechaFin);
     }
 }

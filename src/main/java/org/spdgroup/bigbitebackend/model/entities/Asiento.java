@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,9 +16,9 @@ public class Asiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date fecha;
     private double monto;
     private String tipo;
+    private LocalDate fecha;
 
     @ManyToOne
     private Cuenta cuenta;
