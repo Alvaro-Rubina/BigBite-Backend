@@ -26,7 +26,4 @@ public class Pedido {
 
     @ManyToMany
     private List<DetalleProducto> productos;
-
-    @OneToOne
-    private Factura factura;
 }

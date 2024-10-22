@@ -1,6 +1,7 @@
 package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.DetalleProductoDTO;
+import org.spdgroup.bigbitebackend.model.dtos.FacturaDTO;
 import org.spdgroup.bigbitebackend.model.dtos.PedidoDTO;
 import org.spdgroup.bigbitebackend.model.entities.DetalleProducto;
 import org.spdgroup.bigbitebackend.model.entities.Pedido;
@@ -54,5 +55,17 @@ public class PedidoService {
         return pedidoRepo.findAll();
     }
 
+    public FacturaDTO emitirFactura(Long id){
+        Pedido pedido = obtenerPedidoPorId(id);
+
+        FacturaDTO facturaDTO = FacturaDTO.builder()
+                .fechaSolicitado(pedido.getFechaSolicitado())
+                .fechaEmisionFactura(LocalTime.now())
+                .subTotal(pedido.getSubTotal())
+                .Total(pedido.getSubTotal())
+                .build();
+
+        return facturaDTO;
+    }
     // TODO: NO ESTAN ?????
 }
