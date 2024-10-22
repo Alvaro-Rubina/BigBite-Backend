@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +40,7 @@ public class HamburguesaService {
         String imagenUrl = storageService.uploadFile(imagen);
 
         // Se guardan los insumos
-        List<DetalleInsumo> detalleInsumos = null;
+        List<DetalleInsumo> detalleInsumos = new ArrayList<>();
         for (DetalleInsumoDTO detalleInsumoDTO : hamburguesaDTO.getDetalleInsumos()) {
             DetalleInsumo detalleInsumo = detalleInsumoService.registrarDetalleInsumo(detalleInsumoDTO);
             detalleInsumos.add(detalleInsumo);
