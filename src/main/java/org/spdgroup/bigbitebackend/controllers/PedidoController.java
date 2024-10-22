@@ -17,13 +17,13 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping("/agregar")
-    public ResponseEntity<?> registrarDetalleProducto(PedidoDTO pedidoDTO) {
+    public ResponseEntity<?> registrarPedido(PedidoDTO pedidoDTO) {
         pedidoService.registrarPedido(pedidoDTO);
         return ResponseEntity.ok("Pedido registrado correctamente");
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerDetalleProductoPorId(Long id) {
+    public ResponseEntity<?> obtenerPedidoPorId(Long id) {
         Pedido pedido = pedidoService.obtenerPedidoPorId(id);
         return ResponseEntity.ok(pedido);
     }
