@@ -33,5 +33,10 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.obtenerPedidos());
     }
 
+    @GetMapping("/factura/{id}")
+    public ResponseEntity<?> obtenerFactura(Long id) {
+        return ResponseEntity.ok(pedidoService.emitirFactura(id));
+    }
+
 
 }
