@@ -10,6 +10,8 @@ import org.spdgroup.bigbitebackend.utils.mapper.PedidoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class PedidoService {
         }
 
         pedido.setProductos(detalleProductos);
+        pedido.setFechaSolicitado(LocalDate.now());
+        pedido.setHoraSolicitado(LocalTime.now());
         pedido.setProductos(detalleProductos);
 
         pedidoRepo.save(pedido);
