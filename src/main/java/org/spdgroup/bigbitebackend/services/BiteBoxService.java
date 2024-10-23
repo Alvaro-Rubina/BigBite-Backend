@@ -37,13 +37,18 @@ public class BiteBoxService {
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
                 .orElseThrow(() -> new RuntimeException("Hamburguesa no encontrada")));
-
+        biteBox.setRepeticion(1L);
 
         biteBoxRepo.save(biteBox);
     }
 
     public List<BiteBox> obtenerBiteBoxes(){
         return biteBoxRepo.findAll();
+    }
+
+    public BiteBox obtenerBiteBoxPorId(Long id){
+        return biteBoxRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("BiteBox no encontrado"));
     }
 
 
@@ -67,6 +72,7 @@ public class BiteBoxService {
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
                 .orElseThrow(() -> new RuntimeException("Hamburguesa no encontrada")));
         biteBox.setId(id);
+        biteBox.setRepeticion(1L);
 
         biteBoxRepo.save(biteBox);
     }

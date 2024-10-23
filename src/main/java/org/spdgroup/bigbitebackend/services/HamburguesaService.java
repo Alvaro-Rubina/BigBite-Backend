@@ -50,6 +50,7 @@ public class HamburguesaService {
 
         hamburguesa.setInsumos(detalleInsumos);
         hamburguesa.setUrlImagen(imagenUrl);
+        hamburguesa.setRepeticion(1L);
 
         hamburguesaRepo.save(hamburguesa);
     }
@@ -98,6 +99,7 @@ public class HamburguesaService {
         }
 
         hamburguesa.setInsumos(detalleInsumosActualizados);
+        hamburguesa.setRepeticion(1L);
 
         hamburguesaRepo.save(hamburguesa);
     }

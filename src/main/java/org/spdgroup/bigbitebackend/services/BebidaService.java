@@ -31,12 +31,18 @@ public class BebidaService {
 
         bebidaDTO.setUrlImagen(imagenUrl);
         Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
+        bebida.setRepeticion(1L);
 
         bebidaRepo.save(bebida);
     }
 
     public List<Bebida> obtenerBebidas(){
         return bebidaRepo.findAll();
+    }
+
+    public Bebida obtenerBebidaPorId(Long id) {
+        return bebidaRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada"));
     }
 
     public void editarBebida(BebidaDTO bebidaDTO, MultipartFile imagen, Long id) throws IOException {
@@ -56,6 +62,7 @@ public class BebidaService {
         }
 
         Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
+        bebida.setRepeticion(1L);
         bebida.setId(id);
 
         bebidaRepo.save(bebida);

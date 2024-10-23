@@ -50,7 +50,7 @@ public class PapasFritasService {
 
         papasFritas.setInsumos(detalleInsumos);
         papasFritas.setUrlImagen(imagenUrl);
-
+        papasFritas.setRepeticion(1L);
 
         papasFritasRepo.save(papasFritas);
     }
@@ -95,6 +95,7 @@ public class PapasFritasService {
         }
 
         papasFritas.setInsumos(detalleInsumosActualizados);
+        papasFritas.setRepeticion(1L);
 
         papasFritasRepo.save(papasFritas);
     }
