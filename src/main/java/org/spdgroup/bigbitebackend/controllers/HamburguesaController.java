@@ -24,6 +24,12 @@ public class HamburguesaController {
         return hamburguesaService.obtenerHamburguesas();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerHamburguesaPorId(@PathVariable Long id) {
+        Hamburguesa hamburguesa = hamburguesaService.obtenerHamburguesaPorId(id);
+        return ResponseEntity.ok(hamburguesa);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> registrarHamburguesa (@RequestPart HamburguesaDTO hamburguesaDTO,
                                                         @RequestPart MultipartFile imagenHamburguesa) {

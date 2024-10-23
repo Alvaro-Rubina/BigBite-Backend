@@ -24,6 +24,12 @@ public class BebidaController {
         return bebidaService.obtenerBebidas();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerBebidaPorId(@PathVariable Long id) {
+        Bebida bebida = bebidaService.obtenerBebidaPorId(id);
+        return ResponseEntity.ok(bebida);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> registrarBebida(@RequestPart BebidaDTO bebidaDTO,
                                                   @RequestPart MultipartFile imagenBebida) {

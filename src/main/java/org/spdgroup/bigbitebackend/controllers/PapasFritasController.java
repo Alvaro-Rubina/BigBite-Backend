@@ -24,6 +24,11 @@ public class PapasFritasController {
         return papasFritasService.obtenerPapasFritas();
     }
 
+    @GetMapping("/{id}")
+    public PapasFritas obtenerPapasFritasPorId(@PathVariable Long id) {
+        return papasFritasService.obtenerPapasFritasPorId(id);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> registrarPapasFritas(@RequestPart PapasFritasDTO papasFritasDTO,
                                                        @RequestPart MultipartFile imagenPapasFritas) {

@@ -24,6 +24,12 @@ public class BiteBoxController {
         return biteBoxService.obtenerBiteBoxes();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerBiteBoxPorId(@PathVariable Long id) {
+        BiteBox biteBox = biteBoxService.obtenerBiteBoxPorId(id);
+        return ResponseEntity.ok(biteBox);
+    }
+
     @PostMapping("/agregar")
     public ResponseEntity<String> registrarBiteBox(@RequestPart BiteBoxDTO biteBoxDTO,
                                                    @RequestPart MultipartFile imagen) {
