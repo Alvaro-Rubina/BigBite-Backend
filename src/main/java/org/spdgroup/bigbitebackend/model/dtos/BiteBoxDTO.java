@@ -16,5 +16,5 @@ public class BiteBoxDTO {
     private boolean disponible;
     private boolean contieneJuguete;
     private int hamburguesa;        // Se guarda el ID de la hamburguesa para buscarla en la base de datos
-    private String urlImagen;
+    private int bebida;             // Se guarda el ID de la bebida para buscarla en la base de datos
 }

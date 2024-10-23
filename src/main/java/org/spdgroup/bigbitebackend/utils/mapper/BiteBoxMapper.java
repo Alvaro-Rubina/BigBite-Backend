@@ -9,5 +9,6 @@ import org.spdgroup.bigbitebackend.model.entities.BiteBox;
 public interface BiteBoxMapper {
 
     @Mapping(target = "hamburguesa", ignore = true)
+    @Mapping(target = "bebida", ignore = true)
     BiteBox toEntity(BiteBoxDTO dto);
 }

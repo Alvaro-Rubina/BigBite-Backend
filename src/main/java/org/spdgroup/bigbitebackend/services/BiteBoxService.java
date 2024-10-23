@@ -2,6 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.BiteBoxDTO;
 import org.spdgroup.bigbitebackend.model.entities.BiteBox;
+import org.spdgroup.bigbitebackend.repositories.BebidaRepository;
 import org.spdgroup.bigbitebackend.repositories.BiteBoxRepository;
 import org.spdgroup.bigbitebackend.repositories.HamburguesaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
@@ -23,6 +24,9 @@ public class BiteBoxService {
     HamburguesaRepository hamburguesaRepo;
 
     @Autowired
+    BebidaRepository bebidaRepository;
+
+    @Autowired
     BiteBoxMapper biteBoxMapper;
 
     @Autowired
@@ -32,12 +36,15 @@ public class BiteBoxService {
 
         // Se guarda la imagen del BiteBox
         String imagenUrl = storageService.uploadFile(imagen);
-        biteBoxDTO.setUrlImagen(imagenUrl);
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
                 .orElseThrow(() -> new RuntimeException("Hamburguesa no encontrada")));
+        biteBox.setBebida(bebidaRepository.findById((long) biteBoxDTO.getBebida())
+                .orElseThrow(() -> new RuntimeException("Bebida no encontrada")));
+
         biteBox.setRepeticion(1L);
+        biteBox.setUrlImagen(imagenUrl);
 
         biteBoxRepo.save(biteBox);
     }
@@ -58,20 +65,25 @@ public class BiteBoxService {
         BiteBox biteBoxExistente = biteBoxRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("BiteBox no encontrado"));
 
+        BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
+        biteBox.setId(id);
+
         // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
         if (imagen != null && !imagen.isEmpty()) {
             // Subir la nueva imagen y obtener su URL
             String nuevaImagenUrl = storageService.uploadFile(imagen);
-            biteBoxDTO.setUrlImagen(nuevaImagenUrl);
+            biteBox.setUrlImagen(nuevaImagenUrl);
         } else {
             // Mantener la URL de la imagen existente
-            biteBoxDTO.setUrlImagen(biteBoxExistente.getUrlImagen());
+            biteBox.setUrlImagen(biteBoxExistente.getUrlImagen());
         }
 
-        BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
-                .orElseThrow(() -> new RuntimeException("Hamburguesa no encontrada")));
-        biteBox.setId(id);
+                .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada")));
+
+        biteBox.setBebida(bebidaRepository.findById((long) biteBoxDTO.getBebida())
+                .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada")));
+
         biteBox.setRepeticion(1L);
 
         biteBoxRepo.save(biteBox);
