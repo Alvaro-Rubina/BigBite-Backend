@@ -7,7 +7,6 @@ import org.spdgroup.bigbitebackend.model.entities.Hamburguesa;
 import org.spdgroup.bigbitebackend.repositories.HamburguesaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.HamburguesaMapper;
-import org.spdgroup.bigbitebackend.utils.mapper.InsumoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +26,9 @@ public class HamburguesaService {
 
     @Autowired
     private DetalleInsumoService detalleInsumoService;
+
+    @Autowired
+    private InsumoService insumoService;
 
     @Autowired
     private GoogleCloudStorageService storageService;
@@ -66,26 +68,37 @@ public class HamburguesaService {
     //
     public void editarHamburguesa(HamburguesaDTO hamburguesaDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Obtener la hamburguesa existente
-        Hamburguesa hamburguesaExistente = hamburguesaRepo.findById(id)
+        Hamburguesa hamburguesa = hamburguesaRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada"));
 
-        Hamburguesa hamburguesa = hamburguesaMapper.toEntity(hamburguesaDTO);
+        List<DetalleInsumo> detalleInsumosExistentes = hamburguesa.getInsumos();
+        List<DetalleInsumo> detalleInsumosActualizados = new ArrayList<>();
+        String urlImagenExistente = hamburguesa.getUrlImagen();
+
+        hamburguesa = hamburguesaMapper.toEntity(hamburguesaDTO);
+        hamburguesa.setId(id);
 
         // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
         if (imagen != null && !imagen.isEmpty()) {
-            // Subir la nueva imagen y obtener su URL
             String nuevaImagenUrl = storageService.uploadFile(imagen);
             hamburguesa.setUrlImagen(nuevaImagenUrl);
         } else {
-            // Mantener la URL de la imagen existente
-            hamburguesa.setUrlImagen(hamburguesaExistente.getUrlImagen());
+            hamburguesa.setUrlImagen(urlImagenExistente);
         }
 
-        // Mapear el DTO a la entidad y conservar el ID de la hamburguesa existente
-        hamburguesa.setId(id);
+        for (DetalleInsumoDTO detalleInsumoDTO : hamburguesaDTO.getDetalleInsumos()) {
+            DetalleInsumo detalleInsumo = detalleInsumosExistentes.stream()
+                    .filter(di -> di.getInsumo().getId().equals(detalleInsumoDTO.getInsumoId()))
+                    .findFirst()
+                    .orElse(new DetalleInsumo());
 
-        // Guardar los cambios
+            detalleInsumo.setCantidad(detalleInsumoDTO.getCantidad());
+            detalleInsumo.setInsumo(insumoService.obtenerInsumoPorId(detalleInsumoDTO.getInsumoId()));
+            detalleInsumosActualizados.add(detalleInsumo);
+        }
+
+        hamburguesa.setInsumos(detalleInsumosActualizados);
+
         hamburguesaRepo.save(hamburguesa);
     }
 

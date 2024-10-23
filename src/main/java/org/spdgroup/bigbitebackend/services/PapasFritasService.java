@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +29,9 @@ public class PapasFritasService {
     private DetalleInsumoService detalleInsumoService;
 
     @Autowired
+    private InsumoService insumoService;
+
+    @Autowired
     private GoogleCloudStorageService storageService;
 
     public void registrarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen) throws IOException {
@@ -38,7 +42,7 @@ public class PapasFritasService {
         String imagenUrl = storageService.uploadFile(imagen);
 
         // Se guardan los insumos
-        List<DetalleInsumo> detalleInsumos = null;
+        List<DetalleInsumo> detalleInsumos = new ArrayList<>();
         for (DetalleInsumoDTO detalleInsumoDTO : papasFritasDTO.getDetalleInsumos()) {
             DetalleInsumo detalleInsumo = detalleInsumoService.registrarDetalleInsumo(detalleInsumoDTO);
             detalleInsumos.add(detalleInsumo);
@@ -62,29 +66,40 @@ public class PapasFritasService {
 
     public void editarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen, Long id) throws IOException {
 
-        // Obtener las Papas fritas existentes
-        PapasFritas papasFritasExistente = papasFritasRepo.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("PapasFritas no encontrada"));
+        PapasFritas papasFritas = papasFritasRepo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Papas Fritas no encontradas"));
 
-        PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
+        List<DetalleInsumo> detalleInsumosExistentes = papasFritas.getInsumos();
+        List<DetalleInsumo> detalleInsumosActualizados = new ArrayList<>();
+        String urlImagenExistente = papasFritas.getUrlImagen();
 
-        // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
+        papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
+        papasFritas.setId(id);
+
         if (imagen != null && !imagen.isEmpty()) {
-            // Subir la nueva imagen y obtener su URL
             String nuevaImagenUrl = storageService.uploadFile(imagen);
             papasFritas.setUrlImagen(nuevaImagenUrl);
         } else {
-            // Mantener la URL de la imagen existente
-            papasFritas.setUrlImagen(papasFritasExistente.getUrlImagen());
+            papasFritas.setUrlImagen(urlImagenExistente);
         }
 
-        //
-        papasFritas.setId(id);
+        for (DetalleInsumoDTO detalleInsumoDTO : papasFritasDTO.getDetalleInsumos()) {
+            DetalleInsumo detalleInsumo = detalleInsumosExistentes.stream()
+                    .filter(di -> di.getInsumo().getId().equals(detalleInsumoDTO.getInsumoId()))
+                    .findFirst()
+                    .orElse(new DetalleInsumo());
+
+            detalleInsumo.setCantidad(detalleInsumoDTO.getCantidad());
+            detalleInsumo.setInsumo(insumoService.obtenerInsumoPorId(detalleInsumoDTO.getInsumoId()));
+            detalleInsumosActualizados.add(detalleInsumo);
+        }
+
+        papasFritas.setInsumos(detalleInsumosActualizados);
 
         papasFritasRepo.save(papasFritas);
     }
 
-    public void venderHamburguesa(Long id) {
+    public void venderPapasFritas(Long id) {
         PapasFritas papasFritas = this.obtenerPapasFritasPorId(id);
 
         for (DetalleInsumo detalleInsumo : papasFritas.getInsumos()) {
