@@ -67,5 +67,12 @@ public class PedidoService {
 
         return facturaDTO;
     }
-    // TODO: NO ESTAN ?????
+
+    public void editarPedido(PedidoDTO pedidoDTO, Long id) {
+        Pedido pedido = pedidoRepo.findById(id)
+                .orElseThrow(() -> new PedidoNotFoundException("Pedido no encontrado"));
+
+        pedido.setEstadoPedido(pedidoDTO.getEstadoPedido());
+        pedidoRepo.save(pedido);
+    }
 }
