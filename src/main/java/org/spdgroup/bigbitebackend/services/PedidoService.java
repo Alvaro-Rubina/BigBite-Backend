@@ -9,6 +9,7 @@ import org.spdgroup.bigbitebackend.repositories.PedidoRepository;
 import org.spdgroup.bigbitebackend.utils.exception.PedidoNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.PedidoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -51,8 +52,8 @@ public class PedidoService {
                 .orElseThrow(() -> new PedidoNotFoundException("Hamburguesa no encontrada"));
     }
 
-    public List<Pedido> obtenerPedidos(){
-        return pedidoRepo.findAll();
+    public List<Pedido> obtenerPedidos() {
+        return pedidoRepo.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     public FacturaDTO emitirFactura(Long id){
