@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 @Entity
 public class CuentaAsiento {
@@ -17,7 +18,13 @@ public class CuentaAsiento {
     private Long id;
     private double monto;
     private String tipo;
+
     @ManyToOne
     @JoinColumn(name = "cuenta_nombre")
     private Cuenta cuenta;
+
+    @ManyToOne
+    @JoinColumn(name = "asiento_id")
+    private Asiento asiento;
+
 }

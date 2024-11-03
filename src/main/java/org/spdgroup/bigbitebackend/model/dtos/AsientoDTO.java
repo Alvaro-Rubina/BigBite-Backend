@@ -1,11 +1,9 @@
 package org.spdgroup.bigbitebackend.model.dtos;
 
-import jakarta.persistence.ManyToOne;
 import lombok.*;
-import org.spdgroup.bigbitebackend.model.entities.Cuenta;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,9 +13,8 @@ import java.util.List;
 public class AsientoDTO {
 
     private Long id;
-    private double monto;    private LocalDate fecha;
+    private LocalDate fecha;
     private String descripcion;
-
-     private List<CuentaAsientoDTO> cuentaAsientoDTO;
+    private List<CuentaAsientoDTO> cuentaAsientoDTO = new ArrayList<>();
 
 }

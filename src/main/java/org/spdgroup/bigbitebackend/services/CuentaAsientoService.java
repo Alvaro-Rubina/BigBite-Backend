@@ -2,6 +2,7 @@ package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.CuentaAsientoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Asiento;
+import org.spdgroup.bigbitebackend.model.entities.Cuenta;
 import org.spdgroup.bigbitebackend.model.entities.CuentaAsiento;
 import org.spdgroup.bigbitebackend.repositories.CuentaAsientoRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
@@ -15,14 +16,18 @@ import java.util.List;
 public class CuentaAsientoService {
     @Autowired
     private CuentaAsientoRepository cuentaAsientoRepository;
-    @Autowired
-    private CuentaService cuentaService;
+
     @Autowired
     CuentaAsientoMapper cuentaAsientoMapper;
 
-    public void registrarCuentaAsiento(CuentaAsientoDTO cuentaAsientoDTO) {
+    public CuentaAsiento registrarCuentaAsiento(CuentaAsientoDTO cuentaAsientoDTO) {
         CuentaAsiento cuentaAsiento = cuentaAsientoMapper.toEntity(cuentaAsientoDTO);
-        cuentaAsientoRepository.save(cuentaAsiento);
+
+        Cuenta cuenta = cuentaAsientoDTO.getCuenta();
+        cuentaAsiento.setCuenta(cuenta);
+
+        System.out.println(cuentaAsiento);
+        return cuentaAsientoRepository.save(cuentaAsiento);
     }
 
     public CuentaAsiento obtenerCuentaAsientoPorId(Long id) {

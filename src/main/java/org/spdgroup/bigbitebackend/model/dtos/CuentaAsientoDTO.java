@@ -1,7 +1,5 @@
 package org.spdgroup.bigbitebackend.model.dtos;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +14,5 @@ public class CuentaAsientoDTO {
     private long id;
     private double monto;
     private String tipo;
-    private CuentaDTO cuentadto;
+    private Cuenta cuenta;
 }

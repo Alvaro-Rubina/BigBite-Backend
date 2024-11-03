@@ -1,15 +1,19 @@
 package org.spdgroup.bigbitebackend.services;
 
+import jakarta.transaction.Transactional;
 import org.spdgroup.bigbitebackend.model.dtos.AsientoDTO;
+import org.spdgroup.bigbitebackend.model.dtos.CuentaAsientoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Asiento;
 import org.spdgroup.bigbitebackend.model.entities.CuentaAsiento;
 import org.spdgroup.bigbitebackend.repositories.AsientoRepository;
 import org.spdgroup.bigbitebackend.repositories.CuentaAsientoRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.AsientoMapper;
+import org.spdgroup.bigbitebackend.utils.mapper.CuentaAsientoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,40 +23,29 @@ public class AsientoService {
     private AsientoRepository asientoRepo;
 
     @Autowired
-    private CuentaAsientoRepository cuentaAsientoRepo;
+    private CuentaAsientoService cuentaAsientoService;
 
     @Autowired
     private AsientoMapper asientoMapper;
 
+
+    @Transactional
     public void registrarAsiento(AsientoDTO asientoDTO) {
-        // Convertir DTO a entidad
         Asiento asiento = asientoMapper.toEntity(asientoDTO);
+        asiento = asientoRepo.save(asiento);  // Guardar el asiento primero
 
-        // Validar si el asiento está balanceado (suma debe = suma haber)
-        double totalDebe = asiento.getCuentaAsiento().stream()
-                .filter(cuentaAsiento -> "debe".equalsIgnoreCase(cuentaAsiento.getTipo()))
-                .mapToDouble(CuentaAsiento::getMonto)
-                .sum();
-
-        double totalHaber = asiento.getCuentaAsiento().stream()
-                .filter(cuentaAsiento -> "haber".equalsIgnoreCase(cuentaAsiento.getTipo()))
-                .mapToDouble(CuentaAsiento::getMonto)
-                .sum();
-
-        if (totalDebe != totalHaber) {
-            throw new IllegalArgumentException("El asiento contable no está balanceado: el total del debe y haber deben ser iguales.");
+        List<CuentaAsiento> cuentaAsientos = new ArrayList<>();
+        for (CuentaAsientoDTO cuentaAsientoDTO : asientoDTO.getCuentaAsientoDTO()) {
+            CuentaAsiento cuentaAsiento = cuentaAsientoService.registrarCuentaAsiento(cuentaAsientoDTO);
+            cuentaAsiento.setAsiento(asiento);  // Establecer la referencia de Asiento en CuentaAsiento
+            cuentaAsientos.add(cuentaAsiento);
         }
+        asiento.setCuentasAsiento(cuentaAsientos);
+        asientoRepo.save(asiento);  // Guardar nuevamente para actualizar la relación
 
-        // Guardar cada CuentaAsiento si no existe y asociarlo al asiento
-        asiento.getCuentaAsiento().forEach(cuentaAsiento -> {
-            if (cuentaAsiento.getId() == null || !cuentaAsientoRepo.existsById(cuentaAsiento.getId())) {
-                cuentaAsientoRepo.save(cuentaAsiento);
-            }
-        });
-
-        // Guardar el asiento balanceado
-        asientoRepo.save(asiento);
+        System.out.println(asiento);
     }
+
 
     public Asiento obtenerAsientoPorId(Long id) {
         return asientoRepo.findById(id)

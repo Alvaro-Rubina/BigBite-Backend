@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,15 +14,17 @@ import java.util.List;
 @Getter @Setter
 @Builder
 @Entity
+@ToString
 public class Asiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double monto;
     private LocalDate fecha;
     private String descripcion;
-    @ManyToMany
-    private List<CuentaAsiento> cuentaAsiento;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "asiento_id")
+    private List<CuentaAsiento> cuentasAsiento;
 
 }
