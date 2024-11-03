@@ -12,8 +12,7 @@ public interface AsientoRepository extends JpaRepository<Asiento, Long> {
 
     // Traer una lista de asientos buscando de cierta cuenta
 
-    List<Asiento> findByCuentaCodigo(String codigo);
+  /*  List<Asiento> findByCuentaCodigo(String codigo);*/
 
-    List<Asiento> findByFechaBetween(LocalDate fechaInicio, LocalDate fechaFin);
 
 }
