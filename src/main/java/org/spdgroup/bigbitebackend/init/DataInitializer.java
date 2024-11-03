@@ -47,7 +47,6 @@ public class DataInitializer {
                     new Cuenta("5.2.3", "Consumo de Energía, Agua, Gas", "Egreso"),
                     new Cuenta("5.2.4", "Depreciación Bienes de Uso", "Egreso"),
                     new Cuenta("5.3.1", "Sueldos Personal (Cocina y Administración)", "Egreso"),
-                    new Cuenta("5.3.2", "Cargas sociales", "Egreso"),
                     new Cuenta("5.3.3", "Alquiler", "Egreso"),
                     new Cuenta("5.3.4", "Servicios Públicos (Internet, Agua, Gas, Electricidad)", "Egreso"),
                     new Cuenta("6.1", "Comisiones de Plataformas de Delivery (PedidosYa, Rappi)", "Egreso")
