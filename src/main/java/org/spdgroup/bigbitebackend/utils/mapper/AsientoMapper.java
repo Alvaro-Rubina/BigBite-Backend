@@ -8,7 +8,7 @@ import org.spdgroup.bigbitebackend.model.entities.Asiento;
 @Mapper(componentModel = "spring", uses = AsientoMapper.class)
 public interface AsientoMapper {
 
-    @Mapping(target = "cuenta", ignore = true)
-    @Mapping(target="fecha", ignore = true)
+   /* @Mapping(target = "cuenta", ignore = true)*/
+   /* @Mapping(target="fecha", ignore = true)*/
     Asiento toEntity(AsientoDTO asientoDTO);
 }

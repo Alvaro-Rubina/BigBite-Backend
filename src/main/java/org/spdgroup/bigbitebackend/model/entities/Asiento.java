@@ -6,6 +6,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
@@ -17,10 +19,9 @@ public class Asiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double monto;
-    private String tipo;
     private LocalDate fecha;
-
-    @ManyToOne
-    private Cuenta cuenta;
+    private String descripcion;
+    @ManyToMany
+    private List<CuentaAsiento> cuentaAsiento;
 
 }
