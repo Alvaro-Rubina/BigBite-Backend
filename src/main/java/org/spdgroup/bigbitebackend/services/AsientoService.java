@@ -41,9 +41,7 @@ public class AsientoService {
             cuentaAsientos.add(cuentaAsiento);
         }
         asiento.setCuentasAsiento(cuentaAsientos);
-        asientoRepo.save(asiento);  // Guardar nuevamente para actualizar la relación
-
-        System.out.println(asiento);
+        asientoRepo.save(asiento);
     }
 
 

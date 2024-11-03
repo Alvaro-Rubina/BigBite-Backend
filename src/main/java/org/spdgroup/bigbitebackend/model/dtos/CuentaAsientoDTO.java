@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.spdgroup.bigbitebackend.model.entities.Cuenta;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +13,5 @@ public class CuentaAsientoDTO {
     private long id;
     private double monto;
     private String tipo;
-    private Cuenta cuenta;
+    private Long cuentaId;
 }

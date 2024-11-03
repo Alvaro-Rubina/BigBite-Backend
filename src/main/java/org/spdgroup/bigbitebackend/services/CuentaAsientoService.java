@@ -5,6 +5,7 @@ import org.spdgroup.bigbitebackend.model.entities.Asiento;
 import org.spdgroup.bigbitebackend.model.entities.Cuenta;
 import org.spdgroup.bigbitebackend.model.entities.CuentaAsiento;
 import org.spdgroup.bigbitebackend.repositories.CuentaAsientoRepository;
+import org.spdgroup.bigbitebackend.repositories.ICuentaRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.CuentaAsientoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,19 @@ public class CuentaAsientoService {
     @Autowired
     CuentaAsientoMapper cuentaAsientoMapper;
 
+    @Autowired
+    private ICuentaRepository cuentaRepository;
+
     public CuentaAsiento registrarCuentaAsiento(CuentaAsientoDTO cuentaAsientoDTO) {
         CuentaAsiento cuentaAsiento = cuentaAsientoMapper.toEntity(cuentaAsientoDTO);
 
-        Cuenta cuenta = cuentaAsientoDTO.getCuenta();
-        cuentaAsiento.setCuenta(cuenta);
+        // Obtener la cuenta utilizando el ID proporcionado
+        Cuenta cuenta = cuentaRepository.findById(cuentaAsientoDTO.getCuentaId())
+                .orElseThrow(() -> new ProductNotFoundException("Cuenta no encontrada"));
 
-        System.out.println(cuentaAsiento);
+        cuentaAsiento.setCuenta(cuenta);
+        cuentaAsiento.setTipo(cuentaAsientoDTO.getTipo());
+
         return cuentaAsientoRepository.save(cuentaAsiento);
     }
 
