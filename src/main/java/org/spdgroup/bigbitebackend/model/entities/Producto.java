@@ -25,5 +25,5 @@ public class Producto {
     private int tiempoPreparacion;
     private boolean disponible;
     private String urlImagen;
-    private Long repeticion;
+    private Long cantItems;
 }

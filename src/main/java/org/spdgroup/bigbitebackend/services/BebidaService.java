@@ -31,7 +31,7 @@ public class BebidaService {
 
         bebidaDTO.setUrlImagen(imagenUrl);
         Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
-        bebida.setRepeticion(1L);
+        bebida.setCantItems(1L);
 
         bebidaRepo.save(bebida);
     }
@@ -62,7 +62,7 @@ public class BebidaService {
         }
 
         Bebida bebida = bebidaMapper.toEntity(bebidaDTO);
-        bebida.setRepeticion(1L);
+        bebida.setCantItems(1L);
         bebida.setId(id);
 
         bebidaRepo.save(bebida);

@@ -43,7 +43,7 @@ public class BiteBoxService {
         biteBox.setBebida(bebidaRepository.findById((long) biteBoxDTO.getBebida())
                 .orElseThrow(() -> new RuntimeException("Bebida no encontrada")));
 
-        biteBox.setRepeticion(1L);
+        biteBox.setCantItems(1L);
         biteBox.setUrlImagen(imagenUrl);
 
         biteBoxRepo.save(biteBox);
@@ -84,7 +84,7 @@ public class BiteBoxService {
         biteBox.setBebida(bebidaRepository.findById((long) biteBoxDTO.getBebida())
                 .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada")));
 
-        biteBox.setRepeticion(1L);
+        biteBox.setCantItems(1L);
 
         biteBoxRepo.save(biteBox);
     }
