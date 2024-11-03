@@ -1,6 +1,5 @@
 package org.spdgroup.bigbitebackend.controllers;
 
-import org.spdgroup.bigbitebackend.model.dtos.DetalleProductoDTO;
 import org.spdgroup.bigbitebackend.model.dtos.PedidoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Pedido;
 import org.spdgroup.bigbitebackend.services.PedidoService;

@@ -18,12 +18,15 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String titulo;
+    private int cantidad;
+    private double subTotal;
     private LocalDate fechaSolicitado;
     private LocalTime horaSolicitado;
-    private double subTotal;
     private String metodoPago;
     private String estadoPedido;
 
     @ManyToMany
-    private List<DetalleProducto> productos;
+    private List<Producto> productos;
+
 }

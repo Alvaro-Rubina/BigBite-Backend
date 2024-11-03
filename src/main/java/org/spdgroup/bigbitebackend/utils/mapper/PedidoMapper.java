@@ -8,7 +8,7 @@ import org.spdgroup.bigbitebackend.model.entities.Pedido;
 @Mapper(componentModel = "spring", uses = PedidoMapper.class)
 public interface PedidoMapper {
 
-    @Mapping(target = "fechaSolicitado", ignore = true)
-    @Mapping(target = "horaSolicitado", ignore = true)
+    @Mapping(source = "price", target = "subTotal")
+    @Mapping(source = "title", target = "titulo")
     Pedido toEntity(PedidoDTO pedidoDTO);
 }

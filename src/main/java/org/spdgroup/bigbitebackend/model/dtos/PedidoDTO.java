@@ -1,6 +1,7 @@
 package org.spdgroup.bigbitebackend.model.dtos;
 
 import lombok.*;
+import org.spdgroup.bigbitebackend.model.entities.Producto;
 
 import java.util.List;
 
@@ -11,9 +12,10 @@ import java.util.List;
 public class PedidoDTO {
 
     //
-    private double subTotal;
-    private String metodoPago;
+    private String title;
+    private int cantidad;
+    private double price;
     private String estadoPedido;
-    private List<DetalleProductoDTO> detallesProductos;
-
+    private String metodoPago;
+    private List<Producto> productos;
 }
