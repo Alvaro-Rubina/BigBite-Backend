@@ -3,10 +3,9 @@ package org.spdgroup.bigbitebackend.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -23,8 +22,7 @@ public class Asiento {
     private LocalDate fecha;
     private String descripcion;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "asiento_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "asiento")
+    @JsonManagedReference // Anotación para evitar referencia circular
     private List<CuentaAsiento> cuentasAsiento;
-
 }

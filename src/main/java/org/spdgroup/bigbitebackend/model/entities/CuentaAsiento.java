@@ -2,6 +2,7 @@ package org.spdgroup.bigbitebackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Builder
 @Getter
@@ -14,7 +15,6 @@ import lombok.*;
 public class CuentaAsiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private double monto;
     private String tipo;
@@ -25,6 +25,6 @@ public class CuentaAsiento {
 
     @ManyToOne
     @JoinColumn(name = "asiento_id")
+    @JsonBackReference // Anotación para evitar referencia circular
     private Asiento asiento;
-
 }
