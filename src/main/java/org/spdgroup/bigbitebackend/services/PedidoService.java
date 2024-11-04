@@ -32,13 +32,13 @@ public class PedidoService {
     public void registrarPedido(PedidoDTO pedidoDTO){
         Pedido pedido = pedidoMapper.toEntity(pedidoDTO);
 
-        for (Producto producto : pedidoDTO.getProductos()) {
+        for (Producto producto : pedidoDTO.getDescripcion()) {
             if (!productoRepo.existsById(producto.getId())) {
                 throw new IllegalArgumentException("Producto con ID " + producto.getId() + " no existe");
             }
         }
 
-        pedido.setProductos(pedidoDTO.getProductos());
+        pedido.setProductos(pedidoDTO.getDescripcion());
         pedido.setFechaSolicitado(LocalDate.now());
         pedido.setHoraSolicitado(LocalTime.now());
 

@@ -17,5 +17,5 @@ public class PedidoDTO {
     private double price;
     private String estadoPedido;
     private String metodoPago;
-    private List<Producto> productos;
+    private List<Producto> descripcion;
 }

@@ -10,5 +10,6 @@ public interface PedidoMapper {
 
     @Mapping(source = "price", target = "subTotal")
     @Mapping(source = "title", target = "titulo")
+    @Mapping(source = "descripcion", target = "productos")
     Pedido toEntity(PedidoDTO pedidoDTO);
 }
