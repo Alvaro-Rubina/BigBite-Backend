@@ -24,7 +24,6 @@ public class Asiento {
     private String descripcion;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "asiento_id")
     private List<CuentaAsiento> cuentasAsiento;
 
 }

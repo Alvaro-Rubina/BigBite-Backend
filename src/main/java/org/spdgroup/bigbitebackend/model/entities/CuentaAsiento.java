@@ -23,8 +23,4 @@ public class CuentaAsiento {
     @JoinColumn(name = "cuenta_nombre")
     private Cuenta cuenta;
 
-    @ManyToOne
-    @JoinColumn(name = "asiento_id")
-    private Asiento asiento;
-
 }

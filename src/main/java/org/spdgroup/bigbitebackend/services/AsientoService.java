@@ -37,7 +37,6 @@ public class AsientoService {
         List<CuentaAsiento> cuentaAsientos = new ArrayList<>();
         for (CuentaAsientoDTO cuentaAsientoDTO : asientoDTO.getCuentaAsientoDTO()) {
             CuentaAsiento cuentaAsiento = cuentaAsientoService.registrarCuentaAsiento(cuentaAsientoDTO);
-            cuentaAsiento.setAsiento(asiento);  // Establecer la referencia de Asiento en CuentaAsiento
             cuentaAsientos.add(cuentaAsiento);
         }
         asiento.setCuentasAsiento(cuentaAsientos);
