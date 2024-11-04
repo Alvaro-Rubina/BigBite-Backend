@@ -13,6 +13,7 @@ public class PedidoDTO {
 
     //
     private String title;
+    private String email;
     private int cantidad;
     private double price;
     private String estadoPedido;

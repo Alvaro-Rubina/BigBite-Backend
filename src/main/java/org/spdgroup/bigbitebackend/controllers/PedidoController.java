@@ -44,5 +44,10 @@ public class PedidoController {
         return ResponseEntity.ok("Pedido editado correctamente");
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> obtenerPedidoPorEmail(@PathVariable String email) {
+        return ResponseEntity.ok(pedidoService.obtenerPedidoPorEmail(email));
+    }
+
 
 }

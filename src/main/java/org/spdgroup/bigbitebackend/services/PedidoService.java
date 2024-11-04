@@ -72,4 +72,8 @@ public class PedidoService {
         pedido.setEstadoPedido(pedidoDTO.getEstadoPedido());
         pedidoRepo.save(pedido);
     }
+
+    public List<Pedido> obtenerPedidoPorEmail(String email) {
+        return pedidoRepo.findByEmail(email);
+    }
 }

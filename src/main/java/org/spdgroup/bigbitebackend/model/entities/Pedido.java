@@ -18,6 +18,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String email;
     private String titulo;
     private int cantidad;
     private double subTotal;
