@@ -30,9 +30,9 @@ public class GoogleCloudStorageService {
                 ? nombreOriginal + "_" + fecha  // Si existe un nombre original, lo usa
                 : UUID.randomUUID().toString() + "_" + fecha;  // Si no existe, usa un UUID
 
-        // Aquí especificas el formato de imagen (podría ser "jpeg" o "png" dependiendo del archivo)
-        String fileExtension = getFileExtension(file);  // Obtener la extensión del archivo subido
-        fileName += "." + fileExtension;  // Añadir la extensión correcta
+        // Formato del archivo
+        String fileExtension = getFileExtension(file);
+        fileName += "." + fileExtension;
 
         BlobInfo blobInfo = storage.create(
                 BlobInfo.newBuilder(bucketName, fileName)
