@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ICuentaRepository extends JpaRepository<Cuenta, Long> {
+    Cuenta findByNombre(String nombre);
 }
