@@ -11,17 +11,15 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.springframework.core.io.Resource;
-
 @Configuration
 public class GoogleCloudConfig {
 
     @Value("${GCP_CREDENTIALS}")
-    private Resource gcpCredentials;
+    private String gcpCredentials;
 
     @Bean
     public Storage storage() throws IOException {
-        try (InputStream credentialsStream = gcpCredentials.getInputStream()) {
+        try (InputStream credentialsStream = new ByteArrayInputStream(gcpCredentials.getBytes())) {
             GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream);
             return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         }
