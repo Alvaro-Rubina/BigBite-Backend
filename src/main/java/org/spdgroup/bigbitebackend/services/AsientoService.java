@@ -6,10 +6,8 @@ import org.spdgroup.bigbitebackend.model.dtos.CuentaAsientoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Asiento;
 import org.spdgroup.bigbitebackend.model.entities.CuentaAsiento;
 import org.spdgroup.bigbitebackend.repositories.AsientoRepository;
-import org.spdgroup.bigbitebackend.repositories.CuentaAsientoRepository;
 import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.AsientoMapper;
-import org.spdgroup.bigbitebackend.utils.mapper.CuentaAsientoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
