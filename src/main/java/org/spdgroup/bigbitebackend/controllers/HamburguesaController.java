@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hamburguesas")
+@RequestMapping("/api/hamburguesas")
 public class HamburguesaController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class HamburguesaController {
         return ResponseEntity.ok(hamburguesa);
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
     public ResponseEntity<String> registrarHamburguesa (@RequestPart HamburguesaDTO hamburguesaDTO,
                                                         @RequestPart MultipartFile imagenHamburguesa) {
         try {

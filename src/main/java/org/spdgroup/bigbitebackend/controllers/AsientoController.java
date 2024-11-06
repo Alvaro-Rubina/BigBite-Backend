@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/asientos")
+@RequestMapping("/api/asientos")
 public class AsientoController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AsientoController {
     }
 
     // Endpoint para registrar un nuevo asiento contable
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
     public ResponseEntity<String> registrarAsiento(@RequestBody AsientoDTO asientoDTO) {
         try {
             asientoService.registrarAsiento(asientoDTO);

@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bite-box")
+@RequestMapping("/api/bite-box")
 public class BiteBoxController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class BiteBoxController {
         return ResponseEntity.ok(biteBox);
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
     public ResponseEntity<String> registrarBiteBox(@RequestPart BiteBoxDTO biteBoxDTO,
                                                    @RequestPart MultipartFile imagen) {
         try {

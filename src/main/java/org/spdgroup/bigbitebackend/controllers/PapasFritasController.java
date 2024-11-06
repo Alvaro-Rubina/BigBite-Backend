@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/papas-fritas")
+@RequestMapping("/api/papas-fritas")
 public class PapasFritasController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class PapasFritasController {
         return papasFritasService.obtenerPapasFritasPorId(id);
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
     public ResponseEntity<String> registrarPapasFritas(@RequestPart PapasFritasDTO papasFritasDTO,
                                                        @RequestPart MultipartFile imagenPapasFritas) {
         try {

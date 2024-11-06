@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/insumos")
+@RequestMapping("/api/insumos")
 public class InsumoController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class InsumoController {
         return insumoService.obtenerInsumos();
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
     public ResponseEntity<String> registrarInsumo(@RequestBody InsumoDTO insumoDTO) {
         try {
             insumoService.registrarInsumo(insumoDTO);
