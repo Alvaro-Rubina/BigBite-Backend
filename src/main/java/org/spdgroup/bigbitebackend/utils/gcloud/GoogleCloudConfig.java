@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class GoogleCloudConfig {
@@ -19,8 +20,13 @@ public class GoogleCloudConfig {
         if (credentialsJson == null) {
             throw new IllegalStateException("GCP_CREDENTIALS environment variable is not set");
         }
-        InputStream credentialsStream = new ByteArrayInputStream(credentialsJson.getBytes());
+
+        // Decodifica correctamente los saltos de línea y los caracteres especiales en el JSON
+        credentialsJson = credentialsJson.replace("\\n", "\n");
+
+        InputStream credentialsStream = new ByteArrayInputStream(credentialsJson.getBytes(StandardCharsets.UTF_8));
         GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream);
+
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 }
