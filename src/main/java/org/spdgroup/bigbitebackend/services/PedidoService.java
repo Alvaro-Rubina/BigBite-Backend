@@ -93,9 +93,10 @@ public class PedidoService {
         Cuenta cuentaVentas = cuentaRepo.findByNombre("Ventas de Hamburguesas");
         Cuenta cuentaCostoMercaderia = cuentaRepo.findByNombre("Costo de Mercadería Vendida");
         Cuenta cuentaMetodoPago = cuentaRepo.findByNombre(pedido.getMetodoPago());
+        Cuenta cuentaMateriasPrimas = cuentaRepo.findByNombre("Materias Primas");
 
         // Verifica que todas las cuentas estén presentes
-        if (cuentaVentas == null || cuentaCostoMercaderia == null || cuentaMetodoPago == null) {
+        if (cuentaVentas == null || cuentaCostoMercaderia == null || cuentaMetodoPago == null || cuentaMateriasPrimas == null) {
             throw new IllegalArgumentException("Una o más cuentas no se encuentran en la base de datos");
         }
 
@@ -103,24 +104,34 @@ public class PedidoService {
         double costoTotalProductos = pedido.getProductos().stream()
                 .mapToDouble(Producto::getPrecio)
                 .sum();
-        double ventasHamburguesas = pedido.getSubTotal() - costoTotalProductos;
 
-        // Crea los DTOs de CuentaAsiento
-        List<CuentaAsientoDTO> cuentaAsientoDTOs = List.of(
-                new CuentaAsientoDTO(ventasHamburguesas, "haber", cuentaVentas.getId()),
-                new CuentaAsientoDTO(costoTotalProductos, "debe", cuentaCostoMercaderia.getId()),
+        // Registra el asiento de ventas
+        List<CuentaAsientoDTO> cuentaAsientoDTOsVenta = List.of(
+                new CuentaAsientoDTO(pedido.getSubTotal(), "haber", cuentaVentas.getId()),
                 new CuentaAsientoDTO(pedido.getSubTotal(), "debe", cuentaMetodoPago.getId())
         );
 
-        // Crea el DTO de Asiento
-        AsientoDTO asientoDTO = AsientoDTO.builder()
+        AsientoDTO asientoVenta = AsientoDTO.builder()
                 .fecha(pedido.getFechaSolicitado())
-                .descripcion("Asiento generado por pedido " + pedido.getId())
-                .cuentaAsientoDTO(cuentaAsientoDTOs)
+                .descripcion("Asiento de ventas generado por pedido " + pedido.getId())
+                .cuentaAsientoDTO(cuentaAsientoDTOsVenta)
                 .build();
 
-        // Registra el asiento usando el servicio de Asiento
-        asientoService.registrarAsiento(asientoDTO);
+        asientoService.registrarAsiento(asientoVenta);
+
+        // Registra el asiento de costo de mercaderías vendidas
+        List<CuentaAsientoDTO> cuentaAsientoDTOsCosto = List.of(
+                new CuentaAsientoDTO(costoTotalProductos, "debe", cuentaCostoMercaderia.getId()),
+                new CuentaAsientoDTO(costoTotalProductos, "haber", cuentaMateriasPrimas.getId())
+        );
+
+        AsientoDTO asientoCosto = AsientoDTO.builder()
+                .fecha(pedido.getFechaSolicitado())
+                .descripcion("Asiento de costo de mercaderías vendidas por pedido " + pedido.getId())
+                .cuentaAsientoDTO(cuentaAsientoDTOsCosto)
+                .build();
+
+        asientoService.registrarAsiento(asientoCosto);
     }
 
 }
