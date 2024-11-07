@@ -3,6 +3,7 @@ package org.spdgroup.bigbitebackend.services;
 import org.spdgroup.bigbitebackend.model.dtos.FacturaDTO;
 import org.spdgroup.bigbitebackend.model.dtos.PedidoDTO;
 import org.spdgroup.bigbitebackend.model.entities.*;
+import org.spdgroup.bigbitebackend.repositories.AsientoRepository;
 import org.spdgroup.bigbitebackend.repositories.ICuentaRepository;
 import org.spdgroup.bigbitebackend.repositories.PedidoRepository;
 import org.spdgroup.bigbitebackend.repositories.ProductoRepository;
@@ -29,7 +30,8 @@ public class PedidoService {
     private ProductoRepository productoRepo;
     @Autowired
     private ICuentaRepository cuentaRepo;
-
+@Autowired
+private AsientoRepository asientoRepo;
 
     //
     public void registrarPedido(PedidoDTO pedidoDTO){
@@ -86,24 +88,36 @@ public class PedidoService {
         Cuenta cuentaCostoMercaderia = cuentaRepo.findByNombre("Costo de Mercadería Vendida");
         Cuenta cuentaMetodoPago = cuentaRepo.findByNombre(pedido.getMetodoPago());
 
-        // Si alguna de las cuentas no se encuentra en la base de datos, lanza una excepción
+        // Verifica que todas las cuentas estén presentes
         if (cuentaVentas == null || cuentaCostoMercaderia == null || cuentaMetodoPago == null) {
             throw new IllegalArgumentException("Una o más cuentas no se encuentran en la base de datos");
         }
+
+        // Calcula el costo total de los productos
         double costoTotalProductos = pedido.getProductos().stream()
                 .mapToDouble(Producto::getPrecio)
                 .sum();
         double ventasHamburguesas = pedido.getSubTotal() - costoTotalProductos;
 
-        return Asiento.builder()
+        // Crea el asiento contable con las cuentas correspondientes
+        Asiento asiento = Asiento.builder()
                 .fecha(pedido.getFechaSolicitado())
                 .descripcion("Asiento generado por pedido " + pedido.getId())
                 .cuentasAsiento(List.of(
-                        new CuentaAsiento(null, ventasHamburguesas, "haber",cuentaVentas),
-                        new CuentaAsiento(null,costoTotalProductos,"debe",cuentaCostoMercaderia),
-                        new CuentaAsiento(null,pedido.getSubTotal(),"debe",cuentaMetodoPago)
+                        new CuentaAsiento( ventasHamburguesas, "haber", cuentaVentas),
+                        new CuentaAsiento( costoTotalProductos, "debe", cuentaCostoMercaderia),
+                        new CuentaAsiento( pedido.getSubTotal(), "debe", cuentaMetodoPago)
                 ))
                 .build();
+
+        // Guarda el asiento en la base de datos
+        asientoRepo.save(asiento);
+
+        // Retorna el asiento guardado
+        return asiento;
     }
+
 }
+
+
 

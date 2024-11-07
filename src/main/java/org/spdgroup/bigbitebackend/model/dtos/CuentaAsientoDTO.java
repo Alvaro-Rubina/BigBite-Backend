@@ -14,4 +14,6 @@ public class CuentaAsientoDTO {
     private double monto;
     private String tipo;
     private Long cuentaId;
+
+
 }

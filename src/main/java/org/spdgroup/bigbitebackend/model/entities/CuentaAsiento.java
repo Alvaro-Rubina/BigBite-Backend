@@ -22,5 +22,9 @@ public class CuentaAsiento {
     @ManyToOne
     @JoinColumn(name = "cuenta_nombre")
     private Cuenta cuenta;
-
+public CuentaAsiento(double monto, String tipo, Cuenta cuenta) {
+    this.monto = monto;
+    this.tipo = tipo;
+    this.cuenta = cuenta;
+}
 }
