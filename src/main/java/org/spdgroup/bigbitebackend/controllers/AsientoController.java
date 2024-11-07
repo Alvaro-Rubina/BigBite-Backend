@@ -19,6 +19,7 @@ public class AsientoController {
 
     // Endpoint para obtener todos los asientos
     @GetMapping
+    @ResponseBody
     public List<Asiento> obtenerAsientos() {
         return asientoService.obtenerAsientos();
     }
