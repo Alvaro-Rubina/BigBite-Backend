@@ -1,5 +1,7 @@
 package org.spdgroup.bigbitebackend.services;
 
+import org.spdgroup.bigbitebackend.model.dtos.AsientoDTO;
+import org.spdgroup.bigbitebackend.model.dtos.CuentaAsientoDTO;
 import org.spdgroup.bigbitebackend.model.dtos.FacturaDTO;
 import org.spdgroup.bigbitebackend.model.dtos.PedidoDTO;
 import org.spdgroup.bigbitebackend.model.entities.*;
@@ -28,10 +30,12 @@ public class PedidoService {
 
     @Autowired
     private ProductoRepository productoRepo;
+
     @Autowired
     private ICuentaRepository cuentaRepo;
-@Autowired
-private AsientoRepository asientoRepo;
+
+    @Autowired
+    private AsientoService asientoService;
 
     //
     public void registrarPedido(PedidoDTO pedidoDTO){
@@ -82,7 +86,9 @@ private AsientoRepository asientoRepo;
     public List<Pedido> obtenerPedidoPorEmail(String email) {
         return pedidoRepo.findByEmail(email);
     }
-    public Asiento generarAsientoContable(Pedido pedido) {
+
+
+    public void generarAsientoContable(Pedido pedido) {
         // Obtén las cuentas necesarias desde la base de datos usando el repositorio
         Cuenta cuentaVentas = cuentaRepo.findByNombre("Ventas de Hamburguesas");
         Cuenta cuentaCostoMercaderia = cuentaRepo.findByNombre("Costo de Mercadería Vendida");
@@ -99,22 +105,22 @@ private AsientoRepository asientoRepo;
                 .sum();
         double ventasHamburguesas = pedido.getSubTotal() - costoTotalProductos;
 
-        // Crea el asiento contable con las cuentas correspondientes
-        Asiento asiento = Asiento.builder()
+        // Crea los DTOs de CuentaAsiento
+        List<CuentaAsientoDTO> cuentaAsientoDTOs = List.of(
+                new CuentaAsientoDTO(ventasHamburguesas, "haber", cuentaVentas.getId()),
+                new CuentaAsientoDTO(costoTotalProductos, "debe", cuentaCostoMercaderia.getId()),
+                new CuentaAsientoDTO(pedido.getSubTotal(), "debe", cuentaMetodoPago.getId())
+        );
+
+        // Crea el DTO de Asiento
+        AsientoDTO asientoDTO = AsientoDTO.builder()
                 .fecha(pedido.getFechaSolicitado())
                 .descripcion("Asiento generado por pedido " + pedido.getId())
-                .cuentasAsiento(List.of(
-                        new CuentaAsiento( ventasHamburguesas, "haber", cuentaVentas),
-                        new CuentaAsiento( costoTotalProductos, "debe", cuentaCostoMercaderia),
-                        new CuentaAsiento( pedido.getSubTotal(), "debe", cuentaMetodoPago)
-                ))
+                .cuentaAsientoDTO(cuentaAsientoDTOs)
                 .build();
 
-        // Guarda el asiento en la base de datos
-        asientoRepo.save(asiento);
-
-        // Retorna el asiento guardado
-        return asiento;
+        // Registra el asiento usando el servicio de Asiento
+        asientoService.registrarAsiento(asientoDTO);
     }
 
 }
