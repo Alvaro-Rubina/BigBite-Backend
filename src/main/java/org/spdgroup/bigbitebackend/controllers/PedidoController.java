@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
 
     public ResponseEntity<?> registrarPedido(@RequestBody PedidoDTO pedidoDTO) {
         pedidoService.registrarPedido(pedidoDTO);

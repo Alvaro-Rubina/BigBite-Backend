@@ -9,7 +9,6 @@ import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.PapasFritasMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,15 +29,10 @@ public class PapasFritasService {
     @Autowired
     private InsumoService insumoService;
 
-    @Autowired
-    private GoogleCloudStorageService storageService;
-
-    public void registrarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen) throws IOException {
+    public void registrarPapasFritas(PapasFritasDTO papasFritasDTO) throws IOException {
 
         PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
 
-        // Se guarda la imagen de la bebida
-        String imagenUrl = storageService.uploadFile(imagen);
 
         // Se guardan los insumos
         List<DetalleInsumo> detalleInsumos = new ArrayList<>();
@@ -48,7 +42,6 @@ public class PapasFritasService {
         }
 
         papasFritas.setInsumos(detalleInsumos);
-        papasFritas.setUrlImagen(imagenUrl);
         papasFritas.setCantItems(1L);
 
         papasFritasRepo.save(papasFritas);
@@ -63,24 +56,16 @@ public class PapasFritasService {
         return papasFritasRepo.findAll();
     }
 
-    public void editarPapasFritas(PapasFritasDTO papasFritasDTO, MultipartFile imagen, Long id) throws IOException {
+    public void editarPapasFritas(PapasFritasDTO papasFritasDTO, Long id) throws IOException {
 
         PapasFritas papasFritas = papasFritasRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Papas Fritas no encontradas"));
 
         List<DetalleInsumo> detalleInsumosExistentes = papasFritas.getInsumos();
         List<DetalleInsumo> detalleInsumosActualizados = new ArrayList<>();
-        String urlImagenExistente = papasFritas.getUrlImagen();
 
         papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
         papasFritas.setId(id);
-
-        if (imagen != null && !imagen.isEmpty()) {
-            String nuevaImagenUrl = storageService.uploadFile(imagen);
-            papasFritas.setUrlImagen(nuevaImagenUrl);
-        } else {
-            papasFritas.setUrlImagen(urlImagenExistente);
-        }
 
         for (DetalleInsumoDTO detalleInsumoDTO : papasFritasDTO.getDetalleInsumos()) {
             DetalleInsumo detalleInsumo = detalleInsumosExistentes.stream()

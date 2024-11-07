@@ -7,46 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/hamburguesas")
+@RequestMapping("/api/hamburguesas")
 public class HamburguesaController {
 
     @Autowired
     private HamburguesaService hamburguesaService;
 
     @GetMapping
+    @ResponseBody
     public List<Hamburguesa> obtenerHamburguesas() {
         return hamburguesaService.obtenerHamburguesas();
     }
 
     @GetMapping("/{id}")
+    @ResponseBody
     public ResponseEntity<?> obtenerHamburguesaPorId(@PathVariable Long id) {
         Hamburguesa hamburguesa = hamburguesaService.obtenerHamburguesaPorId(id);
         return ResponseEntity.ok(hamburguesa);
     }
 
-    @PostMapping("/agregar")
-    public ResponseEntity<String> registrarHamburguesa (@RequestPart HamburguesaDTO hamburguesaDTO,
-                                                        @RequestPart MultipartFile imagenHamburguesa) {
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarHamburguesa(@RequestBody HamburguesaDTO hamburguesaDTO) {
         try {
-            hamburguesaService.registrarHamburguesa(hamburguesaDTO, imagenHamburguesa);
+            hamburguesaService.registrarHamburguesa(hamburguesaDTO);
             return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarHamburguesa(@RequestPart("hamburguesaDTO") HamburguesaDTO hamburguesaDTO,
-                                                    @RequestPart(value = "imagenHamburguesa", required = false) MultipartFile imagenHamburguesa,
-                                                    @PathVariable Long id) {
+    public ResponseEntity<String> editarHamburguesa(@RequestBody HamburguesaDTO hamburguesaDTO, @PathVariable Long id) {
         try {
-            hamburguesaService.editarHamburguesa(hamburguesaDTO, imagenHamburguesa, id);
+            hamburguesaService.editarHamburguesa(hamburguesaDTO, id);
             return new ResponseEntity<>("Edición exitosa", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

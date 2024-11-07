@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cuentasAsiento")
+@RequestMapping("/api/cuentasAsiento")
 public class CuentaAsientoController {
     @Autowired
     private CuentaAsientoService cuentaAsientoService;
@@ -19,7 +19,7 @@ public class CuentaAsientoController {
         return cuentaAsientoService.obtenerCuentasAsientos();
     }
 
-    @PostMapping("/agregar")
+    @PostMapping("/registrar")
 
     public void agregarCuentaAsiento(@RequestBody CuentaAsientoDTO cuentaAsientoDTO) {
         cuentaAsientoService.registrarCuentaAsiento(cuentaAsientoDTO);

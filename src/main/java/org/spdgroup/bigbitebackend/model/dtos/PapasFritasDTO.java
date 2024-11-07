@@ -18,5 +18,6 @@ public class PapasFritasDTO {
     private int tiempoPreparacion;
     private String tamanio;
     private boolean disponible;
+    private String urlImagen;
     private List<DetalleInsumoDTO> detalleInsumos;
 }

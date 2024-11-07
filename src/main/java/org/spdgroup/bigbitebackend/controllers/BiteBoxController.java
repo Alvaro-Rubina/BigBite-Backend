@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bite-box")
+@RequestMapping("/api/bite-box")
 public class BiteBoxController {
 
     @Autowired
@@ -29,11 +29,10 @@ public class BiteBoxController {
         return ResponseEntity.ok(biteBox);
     }
 
-    @PostMapping("/agregar")
-    public ResponseEntity<String> registrarBiteBox(@RequestPart BiteBoxDTO biteBoxDTO,
-                                                   @RequestPart MultipartFile imagen) {
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarBiteBox(@RequestBody BiteBoxDTO biteBoxDTO) {
         try {
-            biteBoxService.registrarBiteBox(biteBoxDTO, imagen);
+            biteBoxService.registrarBiteBox(biteBoxDTO);
             return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -41,11 +40,9 @@ public class BiteBoxController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarBiteBox(@RequestPart("biteBoxDTO") BiteBoxDTO biteBoxDTO,
-                                                @RequestPart(value = "imagen", required = false) MultipartFile imagen,
-                                                @PathVariable Long id) {
+    public ResponseEntity<String> editarBiteBox(@RequestBody BiteBoxDTO biteBoxDTO, @PathVariable Long id) {
         try {
-            biteBoxService.editarBiteBox(biteBoxDTO, imagen, id);
+            biteBoxService.editarBiteBox(biteBoxDTO, id);
             return new ResponseEntity<>("Edición exitosa", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

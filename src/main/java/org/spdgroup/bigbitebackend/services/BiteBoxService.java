@@ -9,7 +9,6 @@ import org.spdgroup.bigbitebackend.utils.exception.ProductNotFoundException;
 import org.spdgroup.bigbitebackend.utils.mapper.BiteBoxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,13 +28,7 @@ public class BiteBoxService {
     @Autowired
     BiteBoxMapper biteBoxMapper;
 
-    @Autowired
-    private GoogleCloudStorageService storageService;
-
-    public void registrarBiteBox(BiteBoxDTO biteBoxDTO, MultipartFile imagen) throws IOException {
-
-        // Se guarda la imagen del BiteBox
-        String imagenUrl = storageService.uploadFile(imagen);
+    public void registrarBiteBox(BiteBoxDTO biteBoxDTO) throws IOException {
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
@@ -44,7 +37,6 @@ public class BiteBoxService {
                 .orElseThrow(() -> new RuntimeException("Bebida no encontrada")));
 
         biteBox.setCantItems(1L);
-        biteBox.setUrlImagen(imagenUrl);
 
         biteBoxRepo.save(biteBox);
     }
@@ -59,7 +51,7 @@ public class BiteBoxService {
     }
 
 
-    public void editarBiteBox(BiteBoxDTO biteBoxDTO, MultipartFile imagen, Long id) throws IOException {
+    public void editarBiteBox(BiteBoxDTO biteBoxDTO, Long id) throws IOException {
 
         // Obtener el BiteBox existente
         BiteBox biteBoxExistente = biteBoxRepo.findById(id)
@@ -67,16 +59,6 @@ public class BiteBoxService {
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setId(id);
-
-        // Si se sube una nueva imagen, actualizarla, de lo contrario, mantener la URL existente
-        if (imagen != null && !imagen.isEmpty()) {
-            // Subir la nueva imagen y obtener su URL
-            String nuevaImagenUrl = storageService.uploadFile(imagen);
-            biteBox.setUrlImagen(nuevaImagenUrl);
-        } else {
-            // Mantener la URL de la imagen existente
-            biteBox.setUrlImagen(biteBoxExistente.getUrlImagen());
-        }
 
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
                 .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada")));

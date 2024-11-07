@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/bebidas")
+@RequestMapping("/api/bebidas")
 public class BebidaController {
 
     @Autowired
     private BebidaService bebidaService;
+
+    //
 
     @GetMapping
     public List<Bebida> obtenerBebidas() {
@@ -29,11 +30,10 @@ public class BebidaController {
         return ResponseEntity.ok(bebida);
     }
 
-    @PostMapping("/agregar")
-    public ResponseEntity<String> registrarBebida(@RequestPart BebidaDTO bebidaDTO,
-                                                  @RequestPart MultipartFile imagenBebida) {
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarBebida(@RequestBody BebidaDTO bebidaDTO) {
         try {
-            bebidaService.registrarBebida(bebidaDTO, imagenBebida);
+            bebidaService.registrarBebida(bebidaDTO);
             return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -41,11 +41,9 @@ public class BebidaController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarBebida(@RequestPart("bebidaDTO") BebidaDTO bebidaDTO,
-                                               @RequestPart(value = "imagenBebida", required = false) MultipartFile imagenBebida,
-                                               @PathVariable Long id) {
+    public ResponseEntity<String> editarBebida(@RequestBody BebidaDTO bebidaDTO, @PathVariable Long id) {
         try {
-            bebidaService.editarBebida(bebidaDTO, imagenBebida, id);
+            bebidaService.editarBebida(bebidaDTO, id);
             return new ResponseEntity<>("Edición exitosa", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

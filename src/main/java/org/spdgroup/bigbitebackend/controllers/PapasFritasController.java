@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/papas-fritas")
+@RequestMapping("/api/papas-fritas")
 public class PapasFritasController {
 
     @Autowired
@@ -28,11 +27,10 @@ public class PapasFritasController {
         return papasFritasService.obtenerPapasFritasPorId(id);
     }
 
-    @PostMapping("/agregar")
-    public ResponseEntity<String> registrarPapasFritas(@RequestPart PapasFritasDTO papasFritasDTO,
-                                                       @RequestPart MultipartFile imagenPapasFritas) {
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarPapasFritas(@RequestBody PapasFritasDTO papasFritasDTO) {
         try {
-            papasFritasService.registrarPapasFritas(papasFritasDTO, imagenPapasFritas);
+            papasFritasService.registrarPapasFritas(papasFritasDTO);
             return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -40,11 +38,9 @@ public class PapasFritasController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarPapasFritas(@RequestPart("papasFritasDTO") PapasFritasDTO papasFritasDTO,
-                                                    @RequestPart(value = "imagenPapasFritas", required = false) MultipartFile imagenPapasFritas,
-                                                    @PathVariable Long id) {
+    public ResponseEntity<String> editarPapasFritas(@RequestBody PapasFritasDTO papasFritasDTO, @PathVariable Long id) {
         try {
-            papasFritasService.editarPapasFritas(papasFritasDTO, imagenPapasFritas, id);
+            papasFritasService.editarPapasFritas(papasFritasDTO, id);
             return new ResponseEntity<>("Edición exitosa", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
