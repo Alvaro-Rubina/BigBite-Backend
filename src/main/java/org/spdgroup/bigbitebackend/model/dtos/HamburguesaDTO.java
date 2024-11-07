@@ -17,6 +17,7 @@ public class HamburguesaDTO {
     private double precioCombo;
     private int tiempoPreparacion;
     private boolean disponible;
+    private String urlImagen;
     private List<DetalleInsumoDTO> detalleInsumos;
 
 }
