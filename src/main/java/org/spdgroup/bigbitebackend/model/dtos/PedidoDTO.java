@@ -14,9 +14,9 @@ public class PedidoDTO {
     //
     private String title;
     private String email;
-    private int cantidad;
     private double price;
     private String estadoPedido;
+    private String tipoEntrega;
     private String metodoPago;
     private List<Producto> descripcion;
 }

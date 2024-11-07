@@ -20,11 +20,11 @@ public class Pedido {
     private Long id;
     private String email;
     private String titulo;
-    private int cantidad;
     private double subTotal;
     private LocalDate fechaSolicitado;
     private LocalTime horaSolicitado;
     private String metodoPago;
+    private String tipoEntrega;
     private String estadoPedido;
 
     @ManyToMany
