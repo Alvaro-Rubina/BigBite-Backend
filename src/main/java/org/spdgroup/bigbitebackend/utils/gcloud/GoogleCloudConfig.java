@@ -17,6 +17,8 @@ public class GoogleCloudConfig {
     @Bean
     public Storage storage() throws IOException {
         String credentialsJson = System.getenv("GCP_CREDENTIALS");
+        System.out.println("Credenciales JSON: " + credentialsJson);
+
         if (credentialsJson == null) {
             throw new IllegalStateException("GCP_CREDENTIALS environment variable is not set");
         }
