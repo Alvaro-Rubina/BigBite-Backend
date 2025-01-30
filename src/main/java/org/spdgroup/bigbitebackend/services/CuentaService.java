@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CuentaService {
+public class CuentaService {  // TODO: Revisar este service completo!!!
     @Autowired
     ICuentaRepository cuentaRepo;
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BebidaService {
+public class BebidaService {  // TODO: Revisar este service completo!!!
 
     @Autowired
     BebidaRepository bebidaRepo;
@@ -34,7 +34,7 @@ public class BebidaService {
     }
 
     public void editarBebida(BebidaDTO bebidaDTO, Long id) {
-        Bebida bebidaExistente = bebidaRepo.findById(id)
+        bebidaRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada"));
 
         Bebida bebida = bebidaMapper.toEntity(bebidaDTO);

@@ -20,7 +20,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-public class PedidoService {
+public class PedidoService {  // TODO: Revisar este service completo!!!
 
     @Autowired
     private PedidoRepository pedidoRepo;

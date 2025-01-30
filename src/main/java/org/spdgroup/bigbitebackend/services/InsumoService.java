@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InsumoService {
+public class InsumoService {  // TODO: Revisar este service completo!!!
 
     @Autowired
     private InsumoRepository insumoRepo;

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DetalleInsumoService {
+public class DetalleInsumoService {  // TODO: Revisar este service completo!!!
 
     @Autowired
     private DetalleInsumoRepository detalleInsumoRepo;
