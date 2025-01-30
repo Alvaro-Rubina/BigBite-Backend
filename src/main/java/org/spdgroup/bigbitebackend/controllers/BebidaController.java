@@ -1,5 +1,13 @@
 package org.spdgroup.bigbitebackend.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.spdgroup.bigbitebackend.model.dtos.BebidaDTO;
 import org.spdgroup.bigbitebackend.model.entities.Bebida;
 import org.spdgroup.bigbitebackend.services.BebidaService;
@@ -11,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Bebidas", description = "Metodos para registrar, obtener y editar bebidas")
 @RequestMapping("/api/bebidas")
 public class BebidaController {
 
@@ -18,35 +27,53 @@ public class BebidaController {
     private BebidaService bebidaService;
 
     //
-
+    @Operation(summary = "Devuelve todas las bebidas de la BBDD")
     @GetMapping
     public List<Bebida> obtenerBebidas() {
         return bebidaService.obtenerBebidas();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerBebidaPorId(@PathVariable Long id) {
-        Bebida bebida = bebidaService.obtenerBebidaPorId(id);
-        return ResponseEntity.ok(bebida);
-    }
-
+    @Operation(summary = "Registra una nueva bebida en la BBDD")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "201", description = "Bebida registrada", content = {
+                    @Content(mediaType = "application/json",
+                            schema =  @Schema(implementation = BebidaDTO.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Parametros invalidos", content = @Content)
+    })
     @PostMapping("/registrar")
-    public ResponseEntity<String> registrarBebida(@RequestBody BebidaDTO bebidaDTO) {
-        try {
-            bebidaService.registrarBebida(bebidaDTO);
-            return new ResponseEntity<>("Registro exitoso", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<String> registrarBebida(@RequestBody @Valid BebidaDTO bebidaDTO) {
+        bebidaService.registrarBebida(bebidaDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
     }
 
+    @Operation(summary = "Busca una bebida por su ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Bebida encontrada", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = BebidaDTO.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Bebida no encontrada", content = @Content)
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerBebidaPorId(@Parameter(description = "ID de la bebida", example = "1") @PathVariable Long id) {
+        Bebida bebida = bebidaService.obtenerBebidaPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(bebida);
+    }
+
+    @Operation(summary = "Edita una bebida")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Bebida editada", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = BebidaDTO.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Parametros invalidos", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Bebida no encontrada", content = @Content)
+    })
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarBebida(@RequestBody BebidaDTO bebidaDTO, @PathVariable Long id) {
-        try {
-            bebidaService.editarBebida(bebidaDTO, id);
-            return new ResponseEntity<>("Edición exitosa", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<String> editarBebida(@RequestBody @Valid BebidaDTO bebidaDTO,
+                                               @Parameter(description = "ID de la bebida", example = "1") @PathVariable Long id) {
+        bebidaService.editarBebida(bebidaDTO, id);
+        return ResponseEntity.status(HttpStatus.OK).body("Edicion exitosa");
     }
 }
