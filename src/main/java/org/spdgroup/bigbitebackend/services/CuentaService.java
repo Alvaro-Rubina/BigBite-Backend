@@ -16,14 +16,14 @@ public class CuentaService {
     ICuentaRepository cuentaRepo;
 
     @Autowired
-    private CuentaMapper CuentaMapper; // Inyectar el mapper de Cuenta (si lo tienes definido)
+    private CuentaMapper cuentaMapper;
 
-    public void registrarCuenta(CuentaDTO cuentaDTO) throws IOException {
-        Cuenta cuenta = CuentaMapper.toEntity(cuentaDTO); // Usar el mapper para la conversión
-        cuentaRepo.save(cuenta); // Guardar la entidad
+    public void registrarCuenta(CuentaDTO cuentaDTO) {
+        Cuenta cuenta = cuentaMapper.toEntity(cuentaDTO);
+        cuentaRepo.save(cuenta);
     }
 
     public List<Cuenta> obtenerCuentas() {
-        return cuentaRepo.findAll(); // Retornar la lista de cuentas
+        return cuentaRepo.findAll();
     }
 }
