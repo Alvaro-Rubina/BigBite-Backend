@@ -11,7 +11,6 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Cuenta {
 
-    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,10 +18,4 @@ public class Cuenta {
     private String codigo;
     private String nombre;
     private String tipoCuenta;
-
-    public Cuenta(String codigo, String nombre, String tipoCuenta) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.tipoCuenta = tipoCuenta;
-    }
 }
