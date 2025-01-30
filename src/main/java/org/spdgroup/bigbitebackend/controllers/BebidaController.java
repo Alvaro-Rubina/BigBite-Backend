@@ -55,7 +55,7 @@ public class BebidaController {
             }),
             @ApiResponse(responseCode = "404", description = "Bebida no encontrada", content = @Content)
     })
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") @ResponseBody
     public ResponseEntity<?> obtenerBebidaPorId(@Parameter(description = "ID de la bebida", example = "1") @PathVariable Long id) {
         Bebida bebida = bebidaService.obtenerBebidaPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(bebida);

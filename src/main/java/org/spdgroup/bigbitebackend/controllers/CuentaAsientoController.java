@@ -26,8 +26,8 @@ public class CuentaAsientoController {
     private CuentaAsientoService cuentaAsientoService;
 
     @Operation(summary = "Devuelve todas las CuentasAsiento de la BBDD")
-    @GetMapping
-    public List<CuentaAsiento> obtenerCuentaAsiento() {
+    @GetMapping @ResponseBody
+    public List<CuentaAsiento> obtenerCuentaAsientos() {
         return cuentaAsientoService.obtenerCuentasAsientos();
     }
 

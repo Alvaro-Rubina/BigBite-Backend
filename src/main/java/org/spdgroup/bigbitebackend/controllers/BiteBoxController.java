@@ -27,7 +27,7 @@ public class BiteBoxController {
     private BiteBoxService biteBoxService;
 
     @Operation(summary = "Devuelve todas las Bite Boxes de la BBDD")
-    @GetMapping
+    @GetMapping @ResponseBody
     public List<BiteBox> obtenerBiteBoxes() {
         return biteBoxService.obtenerBiteBoxes();
     }
@@ -40,7 +40,7 @@ public class BiteBoxController {
             }),
             @ApiResponse(responseCode = "404", description = "Bite Box no encontrada", content = @Content)
     })
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") @ResponseBody
     public ResponseEntity<?> obtenerBiteBoxPorId(@Parameter(description = "ID de la Bite Box", example = "1") @PathVariable Long id) {
         BiteBox biteBox = biteBoxService.obtenerBiteBoxPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(biteBox);
