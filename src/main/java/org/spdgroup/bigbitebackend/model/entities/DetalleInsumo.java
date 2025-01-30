@@ -19,5 +19,5 @@ public class DetalleInsumo {
     @JoinColumn(name = "insumo_id", nullable = false)
     private Insumo insumo;
 
-    private int cantidad;
+    private double cantidad;
 }
