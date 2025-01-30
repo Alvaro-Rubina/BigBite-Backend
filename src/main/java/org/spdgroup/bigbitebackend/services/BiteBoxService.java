@@ -31,9 +31,9 @@ public class BiteBoxService {  // TODO: Revisar este service completo!!!
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
-                .orElseThrow(() -> new RuntimeException("Hamburguesa no encontrada")));
+                .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada")));
         biteBox.setBebida(bebidaRepository.findById((long) biteBoxDTO.getBebida())
-                .orElseThrow(() -> new RuntimeException("Bebida no encontrada")));
+                .orElseThrow(() -> new ProductNotFoundException("Bebida no encontrada")));
 
         biteBox.setCantItems(1L);
 
