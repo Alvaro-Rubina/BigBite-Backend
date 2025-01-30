@@ -28,7 +28,7 @@ public class BebidaController {
 
     //
     @Operation(summary = "Devuelve todas las bebidas de la BBDD")
-    @GetMapping
+    @GetMapping @ResponseBody
     public List<Bebida> obtenerBebidas() {
         return bebidaService.obtenerBebidas();
     }

@@ -31,10 +31,6 @@ public class BebidaDTO {
     @Min(value = 0, message = "El valor minimo del stock es 0")
     private Integer stock;
 
-    @Schema(example = "0", description = "Por defecto es 0, se recomienda ese valor") @NotNull(message = "El tiempo de preparacion es obligatorio")
-    @Min(value = 0, message = "El valor minimo del tiempo de preparacion es 0")
-    private Integer tiempoPreparacion;
-
     @Schema(example = "Manaos") @NotBlank(message = "La marca es obligatoria")
     private String marca;
 
