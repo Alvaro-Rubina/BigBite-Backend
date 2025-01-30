@@ -57,7 +57,7 @@ public class HamburguesaService {  // TODO: Revisar este service completo!!!
     }
 
     //
-    public void editarHamburguesa(HamburguesaDTO hamburguesaDTO, Long id) throws IOException {
+    public void editarHamburguesa(HamburguesaDTO hamburguesaDTO, Long id) {
 
         Hamburguesa hamburguesa = hamburguesaRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Hamburguesa no encontrada"));
