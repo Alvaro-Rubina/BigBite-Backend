@@ -25,5 +25,5 @@ public class Producto {
     private int tiempoPreparacion;
     private boolean disponible;
     private String urlImagen;
-    private Long cantItems;
+    private Long cantItems; // TODO: arreglar el temita de cantItems
 }
