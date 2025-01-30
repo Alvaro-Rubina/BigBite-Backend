@@ -7,7 +7,6 @@ import org.spdgroup.bigbitebackend.utils.mapper.CuentaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -25,5 +24,9 @@ public class CuentaService {
 
     public List<Cuenta> obtenerCuentas() {
         return cuentaRepo.findAll();
+    }
+
+    public double obtenerCantidadDeCuentas() {
+        return cuentaRepo.count();
     }
 }
