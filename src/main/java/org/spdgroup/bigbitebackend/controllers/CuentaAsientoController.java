@@ -37,13 +37,13 @@ public class CuentaAsientoController {
                     @Content(mediaType = "application/json",
                     schema = @Schema(implementation = CuentaAsientoDTO.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Error al registrar la CuentaAsiento"),
+            @ApiResponse(responseCode = "400", description = "Parametros invalidos"),
             @ApiResponse(responseCode = "404", description = "Cuenta con el ID ingresado no encontrada")
     })
     @PostMapping("/registrar")
     public ResponseEntity<String> agregarCuentaAsiento(@RequestBody @Valid CuentaAsientoDTO cuentaAsientoDTO) {
         cuentaAsientoService.registrarCuentaAsiento(cuentaAsientoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("CuentaAsiento registrada exitosamente");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
     }
 
 }

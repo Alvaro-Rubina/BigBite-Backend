@@ -36,12 +36,12 @@ public class CuentaController {
                     @Content(mediaType = "application/json",
                     schema = @Schema(implementation = CuentaDTO.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Error al registrar la cuenta", content = @Content)
+            @ApiResponse(responseCode = "400", description = "Parametros invalidos", content = @Content)
     })
     @PostMapping("/registrar")
     public ResponseEntity<String> registrarCuenta(@RequestBody @Valid CuentaDTO cuentaDTO) {
         cuentaService.registrarCuenta(cuentaDTO);
-        return new ResponseEntity<>("Cuenta registrada exitosamente", HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
     }
 
 }

@@ -37,11 +37,11 @@ public class AsientoController {
                     @Content(mediaType = "application/json",
                     schema = @Schema(implementation = AsientoDTO.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Error al registrar el asiento", content = @Content)
+            @ApiResponse(responseCode = "400", description = "Parametros invalidos", content = @Content)
     })
     @PostMapping("/registrar")
     public ResponseEntity<String> registrarAsiento(@RequestBody @Valid AsientoDTO asientoDTO) {
         asientoService.registrarAsiento(asientoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Asiento registrado exitosamente");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Registro exitoso");
     }
 }
