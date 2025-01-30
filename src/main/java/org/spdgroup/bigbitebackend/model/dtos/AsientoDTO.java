@@ -19,6 +19,8 @@ public class AsientoDTO {
     private LocalDate fecha;
     @Schema(example = "Asiento de prueba") @NotBlank(message = "La descripcion es obligatoria")
     private String descripcion;
+
+    //TODO: Cambiar el hecho de que se reciba una lista de DTO a una lista de IDs (Long)
     @NotNull(message = "Este campo es obligatorio")
     private List<CuentaAsientoDTO> cuentaAsientoDTO = new ArrayList<>();
 
