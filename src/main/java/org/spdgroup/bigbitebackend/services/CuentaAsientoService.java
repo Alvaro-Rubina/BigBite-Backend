@@ -1,7 +1,6 @@
 package org.spdgroup.bigbitebackend.services;
 
 import org.spdgroup.bigbitebackend.model.dtos.CuentaAsientoDTO;
-import org.spdgroup.bigbitebackend.model.entities.Asiento;
 import org.spdgroup.bigbitebackend.model.entities.Cuenta;
 import org.spdgroup.bigbitebackend.model.entities.CuentaAsiento;
 import org.spdgroup.bigbitebackend.repositories.CuentaAsientoRepository;

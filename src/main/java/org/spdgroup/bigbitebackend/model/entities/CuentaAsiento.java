@@ -4,28 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Builder
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
 @Entity
 public class CuentaAsiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-    private double monto;
+    private Double monto;
     private String tipo;
 
     @ManyToOne
-    @JoinColumn(name = "cuenta_nombre")
+    @JoinColumn(name = "cuenta_id") // ANTES DECIA cuenta_nombre PERO SE MUESTRA EL ID, LO VEO MEJOR DE ESTA FORMA
     private Cuenta cuenta;
-
-    public CuentaAsiento(double monto, String tipo, Cuenta cuenta) {
-        this.monto = monto;
-        this.tipo = tipo;
-        this.cuenta = cuenta;
-    }
 }
