@@ -15,5 +15,4 @@ public class Bebida extends Producto {
     //
     private int stock;
     private String marca;
-    // TODO: AGREGAR MAS ATRIBUTOS PARA BEBIDAS
 }
