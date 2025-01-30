@@ -18,5 +18,5 @@ public class PedidoDTO {
     private String estadoPedido;
     private String tipoEntrega;
     private String metodoPago;
-    private List<Producto> descripcion;
+    private List<Producto> descripcion; //TODO: Cambiar para que se reciba una lista de IDs en lugar de objetos
 }
