@@ -10,11 +10,10 @@ import org.spdgroup.bigbitebackend.utils.mapper.BiteBoxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
-public class BiteBoxService {
+public class BiteBoxService {  // TODO: Revisar este service completo!!!
 
     @Autowired
     BiteBoxRepository biteBoxRepo;
@@ -28,7 +27,7 @@ public class BiteBoxService {
     @Autowired
     BiteBoxMapper biteBoxMapper;
 
-    public void registrarBiteBox(BiteBoxDTO biteBoxDTO) throws IOException {
+    public void registrarBiteBox(BiteBoxDTO biteBoxDTO) {
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
         biteBox.setHamburguesa(hamburguesaRepo.findById((long) biteBoxDTO.getHamburguesa())
@@ -51,10 +50,10 @@ public class BiteBoxService {
     }
 
 
-    public void editarBiteBox(BiteBoxDTO biteBoxDTO, Long id) throws IOException {
+    public void editarBiteBox(BiteBoxDTO biteBoxDTO, Long id) {
 
         // Obtener el BiteBox existente
-        BiteBox biteBoxExistente = biteBoxRepo.findById(id)
+        biteBoxRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("BiteBox no encontrado"));
 
         BiteBox biteBox = biteBoxMapper.toEntity(biteBoxDTO);
