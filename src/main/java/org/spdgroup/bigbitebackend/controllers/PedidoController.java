@@ -1,5 +1,7 @@
 package org.spdgroup.bigbitebackend.controllers;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.spdgroup.bigbitebackend.model.dtos.PedidoDTO;
 import org.spdgroup.bigbitebackend.model.entities.Pedido;
 import org.spdgroup.bigbitebackend.services.PedidoService;
@@ -8,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Tag(name = "Pedidos", description = "Metodos para registrar, obtener y editar pedidos; Asi como para emitir una factura del mismo")
+@Hidden
 @RequestMapping("/api/pedidos")
 public class PedidoController {
 
@@ -33,7 +37,7 @@ public class PedidoController {
     }
 
     @GetMapping("/factura/{id}")
-    public ResponseEntity<?> obtenerFactura(Long id) {
+    public ResponseEntity<?> obtenerFactura(@PathVariable Long id) {
         return ResponseEntity.ok(pedidoService.emitirFactura(id));
     }
 
