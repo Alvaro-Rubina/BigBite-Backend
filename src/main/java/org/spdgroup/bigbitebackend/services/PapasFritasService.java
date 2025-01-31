@@ -29,7 +29,7 @@ public class PapasFritasService {  // TODO: Revisar este service completo!!!
     @Autowired
     private InsumoService insumoService;
 
-    public void registrarPapasFritas(PapasFritasDTO papasFritasDTO) throws IOException {
+    public void registrarPapasFritas(PapasFritasDTO papasFritasDTO) {
 
         PapasFritas papasFritas = papasFritasMapper.toEntity(papasFritasDTO);
 
@@ -56,7 +56,7 @@ public class PapasFritasService {  // TODO: Revisar este service completo!!!
         return papasFritasRepo.findAll();
     }
 
-    public void editarPapasFritas(PapasFritasDTO papasFritasDTO, Long id) throws IOException {
+    public void editarPapasFritas(PapasFritasDTO papasFritasDTO, Long id) {
 
         PapasFritas papasFritas = papasFritasRepo.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Papas Fritas no encontradas"));
