@@ -2,6 +2,10 @@
 
 Este proyecto proporciona una API para ser consumida por Big Bite (https://github.com/candelabp/Big-bite), donde se proporciona una capa de backend para poder persistir los datos que se registran en las operaciones del ecommerce.
 
+La API se encuentra documentada mediante el uso de Swagger, que proporciona una interfaz web para probar cada endpoint y verificar la estructura de los datos de manera óptima. Podés acceder acceder mediante el siguiente enlace: [https://bigbite-backend.onrender.com/swagger-ui/index.html](https://bigbite-backend.onrender.com/swagger-ui/index.html)
+
+Para probar el funcionamiento del frontend en conjunto del backend de Big Bite, podés hacerlo desde el siguiente enlace: [https://big-bite-teal.vercel.app](https://big-bite-teal.vercel.app)
+
 ## Características
 
 - **Persistencia de datos**: Los productos, pedidos, y asientos registrados se persisten en una base de datos MySQL alojada en Railway.
@@ -14,3 +18,4 @@ Este proyecto proporciona una API para ser consumida por Big Bite (https://githu
 * [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
 * [![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=flat&logo=hibernate&logoColor=white)](https://hibernate.org/)
 * [![Lombok](https://img.shields.io/badge/Lombok-2C2C2C?style=flat)](https://projectlombok.org/)
+* [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=flat&logo=swagger&logoColor=white)](https://swagger.io/)
