@@ -1,9 +1,10 @@
 # Big Bite - API 🍔
 
 Este proyecto proporciona una API para ser consumida por Big Bite (https://github.com/candelabp/Big-bite), donde se proporciona una capa de backend para poder persistir los datos que se registran en las operaciones del ecommerce.
-La API se encuentra documentada mediante el uso de Swagger, que proporciona una interfaz web para probar cada endpoint y verificar la estructura de los datos de manera óptima.
 
-Para probar el funcionamiento del frontend en conjunto del backend de Big Bite, podés hacerlo desde el siguiente enlace: https://big-bite-teal.vercel.app
+La API se encuentra documentada mediante el uso de Swagger, que proporciona una interfaz web para probar cada endpoint y verificar la estructura de los datos de manera óptima. Podés acceder acceder mediante el siguiente enlace: [https://bigbite-backend.onrender.com/swagger-ui/index.html](https://bigbite-backend.onrender.com/swagger-ui/index.html)
+
+Para probar el funcionamiento del frontend en conjunto del backend de Big Bite, podés hacerlo desde el siguiente enlace: [https://big-bite-teal.vercel.app](https://big-bite-teal.vercel.app)
 
 ## Características
 
