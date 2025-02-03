@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Hamburguesas", description = "Metodos para registrar, obtener y editar hamburguesas")
+@Tag(name = "Hamburguesas", description = "Metodos para realizar distintas operaciones con hamburguesas. A continuación se ejemplifica como interactuar con cada endpoint.")
 @RequestMapping("/api/hamburguesas")
 public class HamburguesaController {
 

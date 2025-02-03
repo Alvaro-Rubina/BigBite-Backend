@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "BiteBox", description = "Metodos para registrar, obtener y editar Bite Boxes")
+@Tag(name = "BiteBox", description = "Metodos para realizar distintas operaciones con Bite Boxes. A continuación se ejemplifica como interactuar con cada endpoint.")
 @RequestMapping("/api/bite-box")
 public class BiteBoxController {
 

@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Asientos", description = "Metodos para registrar, obtener y editar asientos contables")
+@Tag(name = "Asientos", description = "Métodos para registrar y obtener asientos contables. A continuación se ejemplifica el uso de estos endpoints para un mejor entendimiento." +
+        "\n[A tener en cuenta]: Se recomienda comprender esta sección, pero ponerla en práctica desde la página web de Big Bite." )
 @RequestMapping("/api/asientos")
 public class AsientoController {
 

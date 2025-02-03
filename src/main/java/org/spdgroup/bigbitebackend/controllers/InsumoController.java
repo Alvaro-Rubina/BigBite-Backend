@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Insumos", description = "Metodos para registrar, obtener y editar insumos")
+@Tag(name = "Insumos", description = "Metodos para realizar distintas operaciones con insumos. A continuación se ejemplifica como interactuar con cada endpoint.")
 @RequestMapping("/api/insumos")
 public class InsumoController {
 

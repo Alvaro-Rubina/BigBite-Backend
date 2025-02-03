@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "CuentaAsientos", description = "Metodos para registrar y obtener entidades CuentaAsiento")
+@Tag(name = "CuentaAsientos", description = "CuentaAsiento es una entidad intermediaria entre un Asiento y una cuenta," +
+        "estas se generan automaticamente al generar asientos contables desde la respectiva seccion en Big Bite; por lo que:" +
+        "\n[A tener en cuenta]: Se recomienda comprender esta sección, pero ponerla en práctica desde la página web de Big Bite.")
 @RequestMapping("/api/cuentasAsiento")
 public class CuentaAsientoController {
 

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Cuentas", description = "Metodos para registrar y obtener cuentas")
-@RequestMapping("/api/cuentas")
+@Tag(name = "Cuentas", description = "Métodos para registrar y obtener cuentas. Por defecto, las cuentas ya comienzan cargadas en Big Bite. A continuación se ejemplifica el uso de estos endpoints para un mejor entendimiento." +
+        "\n[A tener en cuenta]: Se recomienda comprender esta sección, pero ponerla en práctica desde la página web de Big Bite." )
 public class CuentaController {
 
     @Autowired

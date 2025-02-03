@@ -10,7 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "Pedidos", description = "Metodos para registrar, obtener y editar pedidos; Asi como para emitir una factura del mismo")
+@Tag(name = "Pedidos", description = "Métodos para registrar y obtener pedidos. A continuación se ejemplifica el uso de estos endpoints para un mejor entendimiento." +
+        "\n[A tener en cuenta]: Se recomienda comprender esta sección, pero ponerla en práctica desde la página web de Big Bite." )
 @Hidden
 @RequestMapping("/api/pedidos")
 public class PedidoController {

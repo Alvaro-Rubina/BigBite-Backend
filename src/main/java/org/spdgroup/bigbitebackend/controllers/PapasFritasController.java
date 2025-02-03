@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Papas Fritas", description = "Metodos para registrar, obtener y editar papas fritas")
+@Tag(name = "Papas Fritas", description = "Metodos para realizar distintas operaciones con papas fritas. A continuación se ejemplifica como interactuar con cada endpoint.")
 @RequestMapping("/api/papas-fritas")
 public class PapasFritasController {
 

@@ -12,7 +12,6 @@ import lombok.*;
 @Getter @Setter
 public class DetalleInsumoDTO {
 
-    // TODO: Resolver: NO se validan bien los datos.
     @Schema(example = "2")
     @NotNull(message = "El ID del insumo es obligatorio")
     @Min(value = 1, message = "El valor minimo del ID es 1")
