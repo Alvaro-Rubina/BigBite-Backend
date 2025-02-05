@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Cuentas", description = "Métodos para registrar y obtener cuentas. Por defecto, las cuentas ya comienzan cargadas en Big Bite. A continuación se ejemplifica el uso de estos endpoints para un mejor entendimiento." +
         "\n[A tener en cuenta]: Se recomienda comprender esta sección, pero ponerla en práctica desde la página web de Big Bite." )
+@RequestMapping("/api/cuentas")
 public class CuentaController {
 
     @Autowired
